@@ -47,12 +47,13 @@ const StyledDiv = styled.button`
 
 interface ITabs {
   children: React.ReactNode;
+  onClick?: React.EventHandler<any>;
 }
 
-const Tabs: React.FC<ITabs> = (children) => {
+const Tabs: React.FC<ITabs> = ({ children }) => {
   return (
     <StyledDiv>
-      <div {...children} />
+      <div>{children}</div>
       <Line> </Line>
     </StyledDiv>
   );

@@ -30,8 +30,8 @@ export const OutlineBtn = styled.button<IBtn>`
 
   color: ${({ bg }) => bg || colors.brand};
   &:hover {
-    filter: drop-shadow(2px 4px 16px rgba(197, 22, 24, 0.35));
-    border: 2px solid ${({ bg }) => bg || colors.brand};
+    filter: drop-shadow(1px 2px 4px rgba(197, 22, 24, 0.35));
+    border: 1.5px solid ${({ bg }) => bg || colors.brand};
   }
   &:active {
     border: 2px solid ${({ active_bg }) => active_bg || colors.secondary};

@@ -29,7 +29,7 @@ export const PrimaryBtn = styled.button<IBtn>`
 
   color: ${({ color }) => color || colors.white};
   &:hover {
-    filter: drop-shadow(2px 4px 16px rgba(197, 22, 24, 0.35));
+    filter: drop-shadow(1px 2px 4px rgba(197, 22, 24, 0.35));
   }
   &:active {
     background: ${({ active_bg }) => active_bg || colors.secondary};

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../theme/colors';
-import img from '../assets/logo/logo.svg';
+import img from '../assets/logo/logo_red.svg';
 import AuthForm from '../components/auth/AuthForm';
 
 const Wrapper = styled.div`
