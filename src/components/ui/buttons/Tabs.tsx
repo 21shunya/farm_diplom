@@ -15,7 +15,7 @@ const appearance = keyframes`
 `;
 
 const Line = styled.div`
-  border: 2px solid ${colors.brand};
+  border: 2px solid ${colors.white};
   min-width: 48px;
   opacity: 0;
 `;
@@ -29,7 +29,7 @@ const StyledDiv = styled.button`
   border: none;
 
   ${getTypography('tabsBold')};
-  color: ${colors.brand};
+  color: ${colors.white};
 
   &:hover ${Line} {
     animation: ${appearance} 0.5s ease-out;

@@ -10,7 +10,7 @@ export const SimpleInput = styled.input`
   border: 2px solid ${colors.grey};
   border-radius: 12px;
 
-  width: 400px;
+  width: 300px;
   height: 56px;
 
   ${getTypography('inputMedium')};

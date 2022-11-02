@@ -1,5 +1,5 @@
-import AuthPage from '../AuthPage';
-import EmployeePage from '../EmployeePage';
+import AuthPage from '../pages/AuthPage';
+import EmployeePage from '../pages/EmployeePage';
 
 export const authRoute = { path: '/auth', element: <AuthPage /> };
 
