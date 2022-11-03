@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import styled from 'styled-components';
 import { getTypography } from '../../../theme/typography';
 import { text_colors } from '../../../theme/colors';
-import { SimpleInput } from './SimpleInput';
 
 const FieldContainer = styled.div`
   display: flex;
@@ -31,23 +30,16 @@ const HelperText = styled.div`
 `;
 
 interface ITextField {
-  inputType: 'simple' | 'multiline' | 'select';
   label?: string;
-  placeholder?: string;
   helper?: string;
+  children: ReactElement;
 }
 
-const TextField: React.FC<ITextField> = ({ inputType, label, placeholder, helper }) => {
+const TextField: React.FC<ITextField> = ({ children, label, helper }) => {
   return (
     <FieldContainer>
       <Label>{label}</Label>
-      {inputType === 'select' ? (
-        <div>Select</div>
-      ) : inputType === 'multiline' ? (
-        <SimpleInput placeholder={placeholder} />
-      ) : (
-        <SimpleInput placeholder={placeholder} />
-      )}
+      {children}
       <HelperText>{helper}</HelperText>
     </FieldContainer>
   );

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../theme/colors';
 import img from '../assets/logo/logo_red.svg';
-import AuthForm from '../components/auth/AuthForm';
+import SendCode from '../components/auth/SendCode';
+import SendPhone from '../components/auth/SendPhone';
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,10 +21,11 @@ const Wrapper = styled.div`
 `;
 
 const AuthPage: React.FC = () => {
+  const [hasPhone, setHasPhone] = useState(false);
   return (
     <Wrapper>
       <img src={img} alt={''} />
-      <AuthForm />
+      {!hasPhone ? <SendPhone setHasPhone={setHasPhone} /> : <SendCode setHasPhone={setHasPhone} />}
     </Wrapper>
   );
 };

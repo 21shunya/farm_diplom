@@ -9,6 +9,8 @@ export const SimpleInput = styled.input`
   padding: 0 12px;
   border: 2px solid ${colors.grey};
   border-radius: 12px;
+  box-sizing: border-box;
+  outline: none;
 
   width: 300px;
   height: 56px;

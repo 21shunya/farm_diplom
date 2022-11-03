@@ -8,6 +8,7 @@ export const types = {
   tabsExtraBold: { font_weight: 900, font_size: '18px' },
   textBold: { font_weight: 700, font_size: '16px' },
   textRegular: { font_weight: 400, font_size: '16px' },
+  numbers: { font_weight: 700, font_size: '22px' },
 };
 
 export const getTypography = (key: keyof typeof types): string => {
