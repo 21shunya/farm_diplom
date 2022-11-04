@@ -68,8 +68,9 @@ interface ICodeInput {
   placeholder?: string;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  setIsDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const CodeInput: React.FC<ICodeInput> = ({ value, setValue }) => {
+const CodeInput: React.FC<ICodeInput> = ({ value, setValue, setIsDisabled }) => {
   const numbers = [0, 0, 0, 0, 0, 0];
 
   const eventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,6 +79,12 @@ const CodeInput: React.FC<ICodeInput> = ({ value, setValue }) => {
       (e.target.value.slice(-1) in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] || e.target.value === '')
     ) {
       setValue(e.target.value);
+    }
+
+    if (e.target.value.length === 6 || value.length === 6) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
   };
 
