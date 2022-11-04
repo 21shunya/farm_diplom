@@ -5,6 +5,7 @@ import { PrimaryBtn } from '../ui/buttons/PrimaryBtn';
 import { AuthForm, BtnGroup } from './AuthForm';
 import { useNavigate } from 'react-router-dom';
 import CodeInput from '../ui/inputs/CodeInput';
+import { validateAuthInput } from '../../utils';
 
 interface ISendCode {
   setHasPhone: (b: boolean) => void;
@@ -12,8 +13,10 @@ interface ISendCode {
 
 const SendCode: React.FC<ISendCode> = ({ setHasPhone }) => {
   const navigate = useNavigate();
-  const [value, setValue] = useState('');
+  const initialValue = '';
+  const [value, setValue] = useState(initialValue);
   const [isDisabled, setIsDisabled] = useState(true);
+  const codeLength = 6;
 
   const sendCode = () => {
     navigate('../employee');
@@ -23,10 +26,14 @@ const SendCode: React.FC<ISendCode> = ({ setHasPhone }) => {
     setHasPhone(false);
   };
 
+  const eventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    validateAuthInput(e.target.value, initialValue, codeLength, setValue, setIsDisabled);
+  };
+
   return (
     <AuthForm>
       <TextField label={'Код'} helper={'Повторить отправку'}>
-        <CodeInput value={value} setValue={setValue} setIsDisabled={setIsDisabled} />
+        <CodeInput value={value} eventHandler={eventHandler} autoFocus={true} />
       </TextField>
       <BtnGroup justify={'space-between'}>
         <OutlineBtn onClick={() => returnToPhone()} size={'small'}>

@@ -3,6 +3,7 @@ import TextField from '../ui/inputs/TextField';
 import { SimpleInput } from '../ui/inputs/SimpleInput';
 import { PrimaryBtn } from '../ui/buttons/PrimaryBtn';
 import { AuthForm, BtnGroup } from './AuthForm';
+import { validateAuthInput } from '../../utils';
 
 interface ISendPhone {
   setHasPhone: (b: boolean) => void;
@@ -11,32 +12,21 @@ interface ISendPhone {
 const SendPhone: React.FC<ISendPhone> = ({ setHasPhone }) => {
   const [value, setValue] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const initialValue = '+7 ';
+  const phoneLength = 13;
 
   const setInitialState = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.value) {
-      setValue('+7 ' + e.target.value);
+      setValue(initialValue);
     }
   };
 
   const changePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      e.target.value.length < 14 &&
-      (e.target.value.slice(-1) in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] || e.target.value === '+7 ')
-    ) {
-      setValue(e.target.value);
-      if (e.target.value.length === 13) {
-        setIsDisabled(false);
-      } else {
-        setIsDisabled(true);
-      }
-    }
-    if (e.target.value.length < 3) {
-      setValue('+7 ');
-    }
+    validateAuthInput(e.target.value, initialValue, phoneLength, setValue, setIsDisabled);
   };
 
   const getCode = () => {
-    if (value.length === 13) {
+    if (value.length === phoneLength) {
       setHasPhone(true);
     }
   };

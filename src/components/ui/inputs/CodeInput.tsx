@@ -9,7 +9,7 @@ const StyledInput = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding: 0 12px;
-  border: 2px solid ${colors.grey};
+  border: 2px solid ${colors.dark_grey};
   border-radius: 12px;
   box-sizing: border-box;
 
@@ -23,9 +23,9 @@ const StyledInput = styled.div`
   &:hover {
     background: ${colors.input_hover};
   }
-  // &:focus {
-  //   border: 2px solid ${colors.dark_grey};
-  // }
+  &:focus {
+    border: 2px solid ${colors.dark_grey};
+  }
 `;
 
 interface ICell {
@@ -67,26 +67,15 @@ const NumberWrapper = styled.div`
 interface ICodeInput {
   placeholder?: string;
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  setIsDisabled: React.Dispatch<React.SetStateAction<boolean>>;
+  eventHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  autoFocus: boolean;
 }
-const CodeInput: React.FC<ICodeInput> = ({ value, setValue, setIsDisabled }) => {
-  const numbers = [0, 0, 0, 0, 0, 0];
+const CodeInput: React.FC<ICodeInput> = ({ value, eventHandler, placeholder, autoFocus }) => {
+  let numbers: string[] = ['0', '0', '0', '0', '0', '0'];
 
-  const eventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      e.target.value.length < 7 &&
-      (e.target.value.slice(-1) in [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] || e.target.value === '')
-    ) {
-      setValue(e.target.value);
-    }
-
-    if (e.target.value.length === 6 || value.length === 6) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-  };
+  if (placeholder) {
+    numbers = placeholder.split('');
+  }
 
   return (
     <StyledInput>
@@ -103,7 +92,7 @@ const CodeInput: React.FC<ICodeInput> = ({ value, setValue, setIsDisabled }) => 
           ),
         )}
       </NumberWrapper>
-      <HiddenInput value={value} onChange={(e) => eventHandler(e)} />
+      <HiddenInput autoFocus={autoFocus} value={value} onChange={(e) => eventHandler(e)} />
     </StyledInput>
   );
 };
