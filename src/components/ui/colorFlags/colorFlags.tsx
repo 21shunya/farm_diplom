@@ -19,9 +19,9 @@ const Wrapper = styled.div<IWrapper>`
   align-items: center;
   gap: ${pxToEm(10, fontSize)}em;
   border-radius: 57px;
-  padding: 10px 16px;
+  padding: ${pxToEm(10, fontSize)}em ${pxToEm(16, fontSize)}em;
 
-  width: ${({ width }) => width};
+  width: ${({ width }) => pxToEm(width, fontSize)}em;
   background: ${({ bg }) => bg};
 
   ${getTypography('textRegular')};

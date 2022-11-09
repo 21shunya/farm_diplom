@@ -5,7 +5,7 @@ import adminIcon from '../assets/icons/admin.svg';
 
 export const colorFlags = {
   status: {
-    width: 150,
+    width: 118,
     active: {
       bg: '#CBFCD0',
       icon: activeIcon,
@@ -16,7 +16,7 @@ export const colorFlags = {
     },
   },
   role: {
-    width: 130,
+    width: 98,
     courier: {
       bg: '#EFDDFA',
       icon: courierIcon,

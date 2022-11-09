@@ -4,7 +4,7 @@ import { colors } from '../theme/colors';
 import img from '../assets/logo/logo_red.svg';
 import SendCode from '../components/auth/SendCode';
 import SendPhone from '../components/auth/SendPhone';
-import {pxToRem} from "../utils/Converting";
+import { pxToRem } from '../utils/Converting';
 
 const Wrapper = styled.div`
   display: flex;
