@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import img from '../../assets/logo/logo_white.svg';
 import NavBar from './NavBar';
 import { colors } from '../../theme/colors';
+import { pxToRem } from '../../utils/Converting';
 
 const Container = styled.div`
   position: relative;
@@ -12,7 +13,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   align-self: stretch;
-  padding: 24px 48px;
+  padding: ${pxToRem(24)}rem ${pxToRem(48)}rem;
   background: ${colors.brand};
   border-radius: 0 0 16px 16px;
 `;

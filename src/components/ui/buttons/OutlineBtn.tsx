@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import { getTypography } from '../../../theme/typography';
+import { getTypography, textTypes } from '../../../theme/typography';
 import { colors, text_colors } from '../../../theme/colors';
 import { btnSize } from '../../../theme/btnSize';
+import { pxToEm } from '../../../utils/Converting';
+
+const fontSize = textTypes.textBold.font_size;
 
 interface IBtn {
   color?: string;
@@ -15,7 +18,7 @@ export const OutlineBtn = styled.button<IBtn>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: ${pxToEm(8, fontSize)}em;
 
   border: 1px solid ${({ bg }) => bg || colors.brand};
   border-radius: 8px;
@@ -26,7 +29,6 @@ export const OutlineBtn = styled.button<IBtn>`
   ${getTypography('textBold')};
 
   text-align: center;
-  letter-spacing: -0.32px;
 
   color: ${({ bg }) => bg || colors.brand};
   &:hover {

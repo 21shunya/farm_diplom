@@ -1,23 +1,25 @@
-export const types = {
-  header1: { font_weight: 700, font_size: '30px' },
-  header2: { font_weight: 700, font_size: '22px' },
-  label: { font_weight: 700, font_size: '14px' },
-  inputMedium: { font_weight: 500, font_size: '18px' },
-  caption: { font_weight: 500, font_size: '12px' },
-  tabsBold: { font_weight: 700, font_size: '18px' },
-  tabsExtraBold: { font_weight: 900, font_size: '18px' },
-  textBold: { font_weight: 700, font_size: '16px' },
-  textRegular: { font_weight: 400, font_size: '16px' },
-  numbers: { font_weight: 700, font_size: '22px' },
+import { pxToRem } from '../utils/Converting';
+
+export const textTypes = {
+  header1: { font_weight: 700, font_size: 30 },
+  header2: { font_weight: 700, font_size: 22 },
+  label: { font_weight: 700, font_size: 14 },
+  inputMedium: { font_weight: 500, font_size: 18 },
+  caption: { font_weight: 500, font_size: 12 },
+  tabsBold: { font_weight: 700, font_size: 18 },
+  tabsExtraBold: { font_weight: 900, font_size: 18 },
+  textBold: { font_weight: 700, font_size: 16 },
+  textRegular: { font_weight: 400, font_size: 16 },
+  numbers: { font_weight: 700, font_size: 22 },
 };
 
-export const getTypography = (key: keyof typeof types): string => {
-  const style = types[key];
+export const getTypography = (key: keyof typeof textTypes): string => {
+  const style = textTypes[key];
 
   return `
     font-family: 'Mulish';
     font-style: normal;
     font-weight: ${style.font_weight};
-    font-size: ${style.font_size};
+    font-size: ${pxToRem(style.font_size)}rem;
     line-height: 20px;`;
 };

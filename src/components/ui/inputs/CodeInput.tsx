@@ -1,20 +1,23 @@
 import styled from 'styled-components';
 import { colors, text_colors } from '../../../theme/colors';
-import { getTypography } from '../../../theme/typography';
+import { getTypography, textTypes } from '../../../theme/typography';
 import React from 'react';
+import { pxToEm } from '../../../utils/Converting';
+
+const fontSize = textTypes.numbers.font_size;
 
 const StyledInput = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 0 12px;
+  padding: 0 ${pxToEm(12, fontSize)}em;
   border: 2px solid ${colors.dark_grey};
   border-radius: 12px;
   box-sizing: border-box;
 
-  width: 300px;
-  height: 56px;
+  width: ${pxToEm(300, fontSize)}em;
+  height: ${pxToEm(56, fontSize)}em;
 
   text-align: center;
 

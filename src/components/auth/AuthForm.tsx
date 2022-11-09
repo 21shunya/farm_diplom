@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { pxToRem } from '../../utils/Converting';
 
 export const AuthForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: ${pxToRem(32)}rem;
 `;
 
 interface IBtnGroup {

@@ -4,19 +4,20 @@ import { OutlineBtn } from '../ui/buttons/OutlineBtn';
 import { Link, useNavigate } from 'react-router-dom';
 import Tabs from '../ui/buttons/Tabs';
 import { colors } from '../../theme/colors';
+import { pxToRem } from '../../utils/Converting';
 
 const NavBarWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding: 10px;
-  gap: 48px;
+  padding: ${pxToRem(10)}rem;
+  gap: ${pxToRem(48)}rem;
 `;
 
 const TabsWrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 40px;
-  max-height: 20px;
+  gap: ${pxToRem(40)}rem;
+  max-height: ${pxToRem(20)}rem;
   text-decoration: none;
 `;
 

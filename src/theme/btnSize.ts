@@ -1,14 +1,16 @@
+import { pxToEm } from '../utils/Converting';
+
 export const btnSize = {
   small: {
-    padding: '6px 24px',
-    height: '32px',
+    padding: `0 ${pxToEm(24, 16)}em`,
+    height: `${pxToEm(32, 16)}em`,
   },
   medium: {
-    padding: '11px 38px',
-    height: '42px',
+    padding: `0 ${pxToEm(38, 16)}em`,
+    height: `${pxToEm(42, 16)}em`,
   },
   large: {
-    padding: '14px 46px',
-    height: '48px',
+    padding: `0 ${pxToEm(46, 16)}em`,
+    height: `${pxToEm(48, 16)}em`,
   },
 };

@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import React from 'react';
-import { getTypography } from '../../../theme/typography';
+import { getTypography, textTypes } from '../../../theme/typography';
 import { text_colors } from '../../../theme/colors';
 import { colorFlags } from '../../../theme/colorFlags';
 import activeIcon from '../../../assets/icons/check.svg';
+import { pxToEm } from '../../../utils/Converting';
+
+const fontSize = textTypes.textRegular.font_size;
 
 interface IWrapper {
   width: number;
@@ -14,7 +17,7 @@ const Wrapper = styled.div<IWrapper>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: ${pxToEm(10, fontSize)}em;
   border-radius: 57px;
   padding: 10px 16px;
 

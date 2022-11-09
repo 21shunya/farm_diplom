@@ -1,7 +1,13 @@
 import React, { ReactElement } from 'react';
 import styled from 'styled-components';
-import { getTypography } from '../../../theme/typography';
+import { getTypography, textTypes } from '../../../theme/typography';
 import { text_colors } from '../../../theme/colors';
+import { pxToEm } from '../../../utils/Converting';
+
+const labelSize = textTypes.label.font_size;
+const helperSize = textTypes.caption.font_size;
+
+console.log(labelSize, helperSize);
 
 const FieldContainer = styled.div`
   display: flex;
@@ -13,7 +19,7 @@ const Label = styled.div`
   display: flex;
   align-items: flex-start;
   align-self: stretch;
-  padding: 0 12px 8px;
+  padding: 0 ${pxToEm(12, labelSize)}em ${pxToEm(8, labelSize)}em;
 
   ${getTypography('label')}
   color: ${text_colors.dark_grey}
@@ -22,7 +28,7 @@ const Label = styled.div`
 const HelperText = styled.div`
   display: flex;
   align-items: flex-start;
-  padding: 4px 12px 0;
+  padding: ${pxToEm(2, helperSize)}em ${pxToEm(12, helperSize)}em 0;
   align-self: stretch;
 
   ${getTypography('caption')}

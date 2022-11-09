@@ -1,7 +1,10 @@
 import styled, { keyframes } from 'styled-components';
-import { getTypography } from '../../../theme/typography';
+import { getTypography, textTypes } from '../../../theme/typography';
 import { colors } from '../../../theme/colors';
 import React from 'react';
+import { pxToEm } from '../../../utils/Converting';
+
+const fontSize = textTypes.tabsBold.font_size;
 
 const appearance = keyframes`
     0% {
@@ -15,8 +18,8 @@ const appearance = keyframes`
 `;
 
 const Line = styled.div`
-  border: 2px solid ${colors.white};
-  min-width: 48px;
+  border: 1.5px solid ${colors.white};
+  min-width: ${pxToEm(48, fontSize)}em;
   opacity: 0;
 `;
 
@@ -24,7 +27,7 @@ const StyledDiv = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: ${pxToEm(12, fontSize)}em;
   background: transparent;
   border: none;
 
