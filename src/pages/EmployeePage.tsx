@@ -15,6 +15,7 @@ const EmployeePage: React.FC = () => {
       <ColorFlags type={'status'} name={'inactive'} />
       <ColorFlags type={'status'} name={'active'} />
       <ColorFlags type={'role'} name={'admin'} />
+      <ColorFlags type={'role'} name={'courier'} />
     </Wrapper>
   );
 };

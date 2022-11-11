@@ -1,31 +1,37 @@
 import React from 'react';
 import styled from 'styled-components';
 import DataCell from './DataCell';
-import HeaderCell from './HeaderCell';
 import { colors } from '../../../theme/colors';
 import { pxToRem } from '../../../utils/Converting';
+import { IconBtn } from '../buttons/IconBtn';
+import Pencil from '../../../assets/icons/Pencil';
 
 const StyledRow = styled.div`
   display: flex;
   align-items: center;
-  height: ${pxToRem(60)}rem;
-  padding: 0 0 0 ${pxToRem(60)}rem;
+  height: ${pxToRem(56)}rem;
   flex-grow: 1;
   align-self: stretch;
   border-bottom: 1px solid ${colors.grey};
+
+  &:hover {
+    background: ${colors.input_hover};
+  }
 `;
 
 interface ITableRow {
-  isHeader: boolean;
   data: (string | JSX.Element)[];
 }
 
-const TableRow: React.FC<ITableRow> = ({ isHeader, data }) => {
+const TableRow: React.FC<ITableRow> = ({ data }) => {
   return (
     <StyledRow>
-      {data.map((item, idx) =>
-        isHeader ? <HeaderCell key={idx} data={item} /> : <DataCell key={idx} data={item} />,
-      )}
+      <IconBtn bg={colors.icon_hover}>
+        <Pencil color={colors.dark_grey} />
+      </IconBtn>
+      {data.map((item, idx) => (
+        <DataCell key={idx} data={item} />
+      ))}
     </StyledRow>
   );
 };

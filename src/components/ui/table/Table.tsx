@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import TableRow from './TableRow';
 import ColorFlags from '../colorFlags/colorFlags';
+import LastRow from './LastRow';
+import HeaderRow from './HeaderRow';
 
 const StyledTable = styled.div`
   box-sizing: border-box;
@@ -14,7 +16,7 @@ const StyledTable = styled.div`
 `;
 
 const Table: React.FC = () => {
-  const header = [['Фамилия', 'Имя', 'Отчество', 'Телефон', 'Статус']];
+  const header = ['Фамилия', 'Имя', 'Отчество', 'Телефон', 'Статус'];
   const data = [
     [
       'Иванов',
@@ -49,12 +51,11 @@ const Table: React.FC = () => {
   ];
   return (
     <StyledTable>
-      {header.map((row, idx) => (
-        <TableRow key={idx} isHeader data={row} />
-      ))}
+      <HeaderRow data={header} />
       {data.map((row, idx) => (
-        <TableRow isHeader={false} key={idx} data={row} />
+        <TableRow key={idx} data={row} />
       ))}
+      <LastRow />
     </StyledTable>
   );
 };

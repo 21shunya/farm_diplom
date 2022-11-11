@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils/Converting';
+import { colors } from '../../../theme/colors';
 
-export const IconBtn = styled.button`
+interface IIconBtn {
+  bg?: string;
+}
+
+export const IconBtn = styled.button<IIconBtn>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,10 +18,14 @@ export const IconBtn = styled.button`
   height: ${pxToRem(50)}rem;
 
   &:hover {
-    background: #ffe0e0;
+    background: ${({ bg }) => bg ?? colors.input_hover};
   }
 
   &:disabled {
     background: transparent;
+  }
+
+  &:active {
+    background: ${colors.grey};
   }
 `;
