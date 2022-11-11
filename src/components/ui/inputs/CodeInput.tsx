@@ -7,6 +7,7 @@ import { pxToEm } from '../../../utils/Converting';
 const fontSize = textTypes.numbers.font_size;
 
 const StyledInput = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -49,12 +50,16 @@ const StyledCell = styled.span<ICell>`
 `;
 
 const HiddenInput = styled.input`
-  min-width: 300px;
-  height: 56px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
   background: transparent;
-  margin-top: -56px;
   outline: none;
   border: none;
+  box-sizing: border-box;
   opacity: 0;
 `;
 
