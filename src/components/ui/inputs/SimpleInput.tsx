@@ -14,7 +14,7 @@ export const SimpleInput = styled.input`
   outline: none;
 
   width: ${pxToEm(300, 18)}em;
-  height: ${pxToEm(56, 18)}em;
+  min-height: ${pxToEm(56, 18)}em;
 
   ${getTypography('inputMedium')};
   color: ${text_colors.dark_grey};

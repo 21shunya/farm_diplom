@@ -2,6 +2,7 @@ import React from 'react';
 
 interface IArrowDown {
   color: string;
+  onClick?: () => void;
 }
 
 const ArrowDown: React.FC<IArrowDown> = ({ color }) => {
