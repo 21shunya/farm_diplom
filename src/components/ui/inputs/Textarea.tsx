@@ -1,20 +1,17 @@
 import styled from 'styled-components';
-import { getTypography } from '../../../theme/typography';
-import { colors, text_colors } from '../../../theme/colors';
 import { pxToEm } from '../../../utils/Converting';
+import { colors, text_colors } from '../../../theme/colors';
+import { getTypography } from '../../../theme/typography';
 
-export const SimpleInput = styled.input`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0 ${pxToEm(12, 18)}em;
+export const Textarea = styled.textarea`
+  box-sizing: border-box;
+  padding: ${pxToEm(11, 18)} 0;
   border: 2px solid ${colors.grey};
   border-radius: 12px;
-  box-sizing: border-box;
   outline: none;
 
   width: ${pxToEm(300, 18)}em;
-  min-height: ${pxToEm(56, 18)}em;
+  min-height: ${pxToEm(75, 18)}em;
 
   ${getTypography('inputMedium')};
   color: ${text_colors.dark_grey};
