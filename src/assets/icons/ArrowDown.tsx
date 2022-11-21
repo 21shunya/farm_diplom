@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from '../../theme/colors';
 
 interface IArrowDown {
   color: string;
@@ -17,7 +18,7 @@ const ArrowDown: React.FC<IArrowDown> = ({ color, size }) => {
     >
       <path
         d="M17.705 9.70492L16.295 8.29492L11.705 12.8749L7.11502 8.29492L5.70502 9.70492L11.705 15.7049L17.705 9.70492Z"
-        fill={color || 'white'}
+        fill={color || colors.dark_grey}
       />
     </svg>
   );

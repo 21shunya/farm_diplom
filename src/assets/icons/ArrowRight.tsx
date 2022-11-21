@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from '../../theme/colors';
 
 interface IArrowRight {
   color: string;
@@ -15,7 +16,10 @@ const ArrowRight: React.FC<IArrowRight> = ({ color, size }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M9.41 6L8 7.41L12.58 12L8 16.59L9.41 18L15.41 12L9.41 6Z" fill={color || 'white'} />
+      <path
+        d="M9.41 6L8 7.41L12.58 12L8 16.59L9.41 18L15.41 12L9.41 6Z"
+        fill={color || colors.dark_grey}
+      />
     </svg>
   );
 };
