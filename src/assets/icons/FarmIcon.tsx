@@ -2,10 +2,10 @@ import React from 'react';
 import { colors } from '../../theme/colors';
 
 interface IIcon {
-  color: string;
+  color?: string;
 }
 
-const PeopleIcon: React.FC<IIcon> = ({ color }) => {
+const FarmIcon: React.FC<IIcon> = ({ color }) => {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -16,4 +16,4 @@ const PeopleIcon: React.FC<IIcon> = ({ color }) => {
   );
 };
 
-export default PeopleIcon;
+export default FarmIcon;

@@ -1,7 +1,7 @@
 import React from 'react';
-import Table from '../components/ui/table/Table';
 import styled from 'styled-components';
-import ColorFlags from '../components/ui/colorFlags/colorFlags';
+import Address from '../components/ui/accordions/Address';
+import { Textarea } from '../components/ui/inputs/Textarea';
 
 const Wrapper = styled.div`
   display: flex;
@@ -11,11 +11,13 @@ const Wrapper = styled.div`
 const EmployeePage: React.FC = () => {
   return (
     <Wrapper>
-      Employee page <Table />
-      <ColorFlags type={'status'} name={'inactive'} />
-      <ColorFlags type={'status'} name={'active'} />
-      <ColorFlags type={'role'} name={'admin'} />
-      <ColorFlags type={'role'} name={'courier'} />
+      {/*<Address />*/}
+      {/*<Address />*/}
+      <Address />
+      <Textarea />
+      {/*<ModalWrapper>*/}
+      {/*  <CreateEmployee />*/}
+      {/*</ModalWrapper>*/}
     </Wrapper>
   );
 };

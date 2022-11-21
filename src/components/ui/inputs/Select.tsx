@@ -76,6 +76,7 @@ const Option = styled.button`
   align-self: stretch;
   background: transparent;
   border: none;
+  z-index: 5;
 
   ${getTypography('inputMedium')};
 

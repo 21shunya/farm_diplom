@@ -8,6 +8,7 @@ import TextField from '../inputs/TextField';
 import { SimpleInput } from '../inputs/SimpleInput';
 import { OutlineBtn } from '../buttons/OutlineBtn';
 import { PrimaryBtn } from '../buttons/PrimaryBtn';
+import { Textarea } from '../inputs/Textarea';
 
 const Wrapper = styled.div`
   display: flex;
@@ -133,7 +134,7 @@ const Address: React.FC = () => {
       <ContentWrapper display={visibility.display} hidden={visibility.hidden}>
         <FieldsWrapper>
           <TextField label={'Регион'}>
-            <SimpleInput disabled />
+            <SimpleInput placeholder={'Дагестан'} disabled />
           </TextField>
           <TextField label={'Город'}>
             <SimpleInput />
@@ -154,7 +155,7 @@ const Address: React.FC = () => {
             <SimpleInput />
           </TextField>
           <TextField label={'Комментарий'}>
-            <SimpleInput />
+            <Textarea disabled />
           </TextField>
         </FieldsWrapper>
         <BtnsWrapper>

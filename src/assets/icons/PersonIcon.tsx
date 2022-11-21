@@ -2,7 +2,7 @@ import React from 'react';
 import { colors } from '../../theme/colors';
 
 interface IIcon {
-  color: string;
+  color?: string;
 }
 
 const PersonIcon: React.FC<IIcon> = ({ color }) => {

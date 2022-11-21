@@ -2,7 +2,7 @@ import React from 'react';
 import { colors } from '../../theme/colors';
 
 interface IPencil {
-  color: string;
+  color?: string;
 }
 
 const Pencil: React.FC<IPencil> = ({ color }) => {

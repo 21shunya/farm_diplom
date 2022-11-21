@@ -19,7 +19,7 @@ const SendCode: React.FC<ISendCode> = ({ setHasPhone }) => {
   const codeLength = 6;
 
   const sendCode = () => {
-    navigate('../employee');
+    navigate('../employees');
   };
 
   const returnToPhone = () => {

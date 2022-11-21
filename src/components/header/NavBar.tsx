@@ -29,7 +29,7 @@ const NavBar: React.FC<INavBar> = ({ isItemPage }) => {
   const mainTabs = [
     { name: 'Клиенты', path: '/client' },
     { name: 'Заказы', path: '/order' },
-    { name: 'Сотрудники', path: '/employee' },
+    { name: 'Сотрудники', path: '/employees' },
     { name: 'Звонки', path: '/call' },
   ];
 
