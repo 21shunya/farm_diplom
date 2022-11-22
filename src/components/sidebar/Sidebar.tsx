@@ -63,7 +63,7 @@ const Sidebar = () => {
         </NavButtons>
         <NavButton
           color={colors.brand}
-          onClick={() => navigate('../auth')}
+          onClick={() => navigate('/auth')}
           icon={<LogoutIcon color={colors.brand} />}
           name={'Выйти'}
         />

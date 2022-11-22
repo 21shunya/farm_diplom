@@ -26,6 +26,7 @@ const Line = styled.div`
 
 interface IWrapper {
   color?: string;
+  onClick?: () => void;
 }
 
 const Wrapper = styled.button<IWrapper>`
@@ -75,9 +76,9 @@ interface INavButton {
   color?: string;
 }
 
-const NavButton: React.FC<INavButton> = ({ name, icon, color }) => {
+const NavButton: React.FC<INavButton> = ({ name, icon, color, onClick }) => {
   return (
-    <Wrapper color={color}>
+    <Wrapper onClick={onClick} color={color}>
       <Title>
         {icon}
         {name}
