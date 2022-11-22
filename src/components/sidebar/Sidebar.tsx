@@ -13,6 +13,7 @@ import logo from '../../assets/logo/logo_vertical.svg';
 import LogoutIcon from '../../assets/icons/LogoutIcon';
 
 const Wrapper = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

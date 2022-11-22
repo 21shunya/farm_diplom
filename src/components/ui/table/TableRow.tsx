@@ -26,7 +26,7 @@ interface ITableRow {
 const TableRow: React.FC<ITableRow> = ({ data }) => {
   return (
     <StyledRow>
-      <IconBtn bg={colors.icon_hover}>
+      <IconBtn bg_hover={colors.icon_hover}>
         <Pencil color={colors.dark_grey} />
       </IconBtn>
       {data.map((item, idx) => (

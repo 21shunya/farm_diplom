@@ -4,6 +4,7 @@ import { colors } from '../../../theme/colors';
 
 interface IIconBtn {
   bg?: string;
+  bg_hover?: string;
 }
 
 export const IconBtn = styled.button<IIconBtn>`
@@ -12,13 +13,13 @@ export const IconBtn = styled.button<IIconBtn>`
   align-items: center;
   border: none;
   border-radius: 100px;
-  background: transparent;
+  background: ${({ bg }) => bg ?? 'transparent'};
 
   width: ${pxToRem(50)}rem;
   height: ${pxToRem(50)}rem;
 
   &:hover {
-    background: ${({ bg }) => bg ?? colors.input_hover};
+    background: ${({ bg_hover }) => bg_hover ?? colors.input_hover};
   }
 
   &:disabled {
