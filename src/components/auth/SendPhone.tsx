@@ -4,6 +4,8 @@ import { SimpleInput } from '../ui/inputs/SimpleInput';
 import { PrimaryBtn } from '../ui/buttons/PrimaryBtn';
 import { AuthForm, BtnGroup } from './AuthForm';
 import { validateAuthInput } from '../../utils';
+import { useAppDispatch } from '../../hooks/redux';
+import { getSms } from '../../store/reducers/ActionCreators';
 
 interface ISendPhone {
   setHasPhone: (b: boolean) => void;
@@ -12,6 +14,7 @@ interface ISendPhone {
 const SendPhone: React.FC<ISendPhone> = ({ setHasPhone }) => {
   const [value, setValue] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const dispatch = useAppDispatch();
   const initialValue = '+7 ';
   const phoneLength = 13;
 
@@ -27,6 +30,8 @@ const SendPhone: React.FC<ISendPhone> = ({ setHasPhone }) => {
 
   const getCode = () => {
     if (value.length === phoneLength) {
+      const phone = value.slice(3);
+      dispatch(getSms(phone));
       setHasPhone(true);
     }
   };
