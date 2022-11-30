@@ -1,6 +1,12 @@
 import AuthPage from '../pages/AuthPage';
 import EmployeePage from '../pages/EmployeePage';
 
-export const authRoute = { path: '/auth', element: <AuthPage /> };
+export const authRoutes = [
+  { path: '/auth', element: <AuthPage /> },
+  { path: '*', element: <AuthPage /> },
+];
 
-export const mainRoutes = [{ path: '/employees', element: <EmployeePage /> }];
+export const mainRoutes = [
+  { path: '/employees', element: <EmployeePage /> },
+  { path: '*', element: <EmployeePage /> },
+];

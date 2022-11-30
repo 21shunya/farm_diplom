@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TextField from '../ui/inputs/TextField';
 import { OutlineBtn } from '../ui/buttons/OutlineBtn';
 import { PrimaryBtn } from '../ui/buttons/PrimaryBtn';
 import { AuthForm, BtnGroup } from './AuthForm';
-import { useNavigate } from 'react-router-dom';
 import CodeInput from '../ui/inputs/CodeInput';
 import { validateAuthInput } from '../../utils';
+import { doLogin } from '../../store/reducers/ActionCreators';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useNavigate } from 'react-router-dom';
 
 interface ISendCode {
   setHasPhone: (b: boolean) => void;
@@ -14,11 +16,14 @@ interface ISendCode {
 const SendCode: React.FC<ISendCode> = ({ setHasPhone }) => {
   const navigate = useNavigate();
   const initialValue = '';
+  const { phone, code } = useAppSelector((state) => state.authReducer);
   const [value, setValue] = useState(initialValue);
   const [isDisabled, setIsDisabled] = useState(true);
+  const dispatch = useAppDispatch();
   const codeLength = 6;
 
-  const sendCode = () => {
+  const sendCode = async () => {
+    await dispatch(doLogin(phone, value));
     navigate('../employees');
   };
 
@@ -30,8 +35,12 @@ const SendCode: React.FC<ISendCode> = ({ setHasPhone }) => {
     validateAuthInput(e.target.value, initialValue, codeLength, setValue, setIsDisabled);
   };
 
+  useEffect(() => {
+    setValue(code);
+  }, [code]);
+
   return (
-    <AuthForm>
+    <AuthForm onSubmit={(e) => e.preventDefault()}>
       <TextField label={'Код'} helper={'Повторить отправку'}>
         <CodeInput value={value} eventHandler={eventHandler} autoFocus={true} />
       </TextField>

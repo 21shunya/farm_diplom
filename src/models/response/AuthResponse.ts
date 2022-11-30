@@ -1,8 +1,7 @@
 export interface LoginResponse {
-  accessToken: string;
-  refreshToken: string;
+  payload: { accessToken: string; refreshToken: string };
 }
 
 export interface GetCodeResponse {
-  code: string;
+  payload: { code: string };
 }

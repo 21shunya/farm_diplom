@@ -1,6 +1,6 @@
 import React from 'react';
 import NavButton from './NavButton';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PeopleIcon from '../../assets/icons/PeopleIcon';
 import BasketIcon from '../../assets/icons/BasketIcon';
 import PersonIcon from '../../assets/icons/PersonIcon';
@@ -11,6 +11,8 @@ import { pxToRem } from '../../utils/Converting';
 import { colors } from '../../theme/colors';
 import logo from '../../assets/logo/logo_vertical.svg';
 import LogoutIcon from '../../assets/icons/LogoutIcon';
+import { useAppDispatch } from '../../hooks/redux';
+import { doLogout } from '../../store/reducers/ActionCreators';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -38,8 +40,9 @@ const NavButtons = styled.div`
   flex: 1 1;
   gap: ${pxToRem(12)}rem;
 `;
+
 const Sidebar = () => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const btns = [
     { name: 'Клиенты', path: '/clients', icon: <PeopleIcon /> },
@@ -63,7 +66,7 @@ const Sidebar = () => {
         </NavButtons>
         <NavButton
           color={colors.brand}
-          onClick={() => navigate('/auth')}
+          onClick={() => dispatch(doLogout())}
           icon={<LogoutIcon color={colors.brand} />}
           name={'Выйти'}
         />

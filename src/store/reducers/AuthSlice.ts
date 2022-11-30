@@ -20,11 +20,17 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    updatePhone(state, action: PayloadAction<string>) {
+    setPhone(state, action: PayloadAction<string>) {
       state.phone = action.payload;
     },
-    updateCode(state, action: PayloadAction<string>) {
+    setCode(state, action: PayloadAction<string>) {
       state.code = action.payload;
+    },
+    setAuth(state, action: PayloadAction<boolean>) {
+      state.isAuth = action.payload;
+    },
+    setLoading(state, action: PayloadAction<boolean>) {
+      state.isLoading = action.payload;
     },
     setAuthError(state, action: PayloadAction<string>) {
       state.error = action.payload;
@@ -32,6 +38,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { updateCode, updatePhone } = authSlice.actions;
+export const { setPhone, setCode, setAuth, setLoading, setAuthError } = authSlice.actions;
 
 export default authSlice.reducer;
