@@ -7,8 +7,6 @@ import { pxToEm } from '../../../utils/Converting';
 const labelSize = textTypes.label.font_size;
 const helperSize = textTypes.caption.font_size;
 
-console.log(labelSize, helperSize);
-
 const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;

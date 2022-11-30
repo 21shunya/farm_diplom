@@ -4,11 +4,8 @@ import { pxToEm, pxToRem } from '../../../utils/Converting';
 import { colors, text_colors } from '../../../theme/colors';
 import ArrowRight from '../../../assets/icons/ArrowRight';
 import { getTypography } from '../../../theme/typography';
-import TextField from '../inputs/TextField';
-import { SimpleInput } from '../inputs/SimpleInput';
 import { OutlineBtn } from '../buttons/OutlineBtn';
 import { PrimaryBtn } from '../buttons/PrimaryBtn';
-import { Textarea } from '../inputs/Textarea';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,11 +23,10 @@ const StyledTitle = styled.button<ITitle>`
   justify-content: space-between;
   align-items: center;
   padding: ${pxToEm(8, 20)}em ${pxToEm(24, 20)}em;
-  background: ${colors.input_hover};
   border-radius: 12px;
-  border: none;
+  background: transparent;
+  border: 1px solid ${colors.grey};
   min-width: ${pxToRem(300)}rem;
-  border: none;
 
   ${getTypography('header2')};
   color: ${({ color }) => color || text_colors.dark_grey};
@@ -87,12 +83,6 @@ const ContentWrapper = styled.div<IContentWrapper>`
   animation: ${open} ease-in-out 0.5s;
 `;
 
-const FieldsWrapper = styled.div`
-  display: flex;
-  gap: ${pxToRem(48)}rem;
-  flex-wrap: wrap;
-`;
-
 const BtnsWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -100,7 +90,10 @@ const BtnsWrapper = styled.div`
   align-self: flex-end;
 `;
 
-const Address: React.FC = () => {
+interface IAccordion {
+  children: JSX.Element;
+}
+const Accordion: React.FC<IAccordion> = ({ children }) => {
   const [titleColor, setTitleColor] = useState(text_colors.dark_grey);
   const [animation, setAnimation] = useState<{ name: Keyframes; rotation: number }>({
     name: rotate0,
@@ -132,32 +125,7 @@ const Address: React.FC = () => {
         </IconWrapper>
       </StyledTitle>
       <ContentWrapper display={visibility.display} hidden={visibility.hidden}>
-        <FieldsWrapper>
-          <TextField label={'Регион'}>
-            <SimpleInput placeholder={'Дагестан'} disabled />
-          </TextField>
-          <TextField label={'Город'}>
-            <SimpleInput />
-          </TextField>
-          <TextField label={'Улица'}>
-            <SimpleInput />
-          </TextField>
-          <TextField label={'Дом'}>
-            <SimpleInput />
-          </TextField>
-          <TextField label={'Подъезд'}>
-            <SimpleInput />
-          </TextField>
-          <TextField label={'Этаж'}>
-            <SimpleInput />
-          </TextField>
-          <TextField label={'Квартира'}>
-            <SimpleInput />
-          </TextField>
-          <TextField label={'Комментарий'}>
-            <Textarea disabled />
-          </TextField>
-        </FieldsWrapper>
+        {children}
         <BtnsWrapper>
           <OutlineBtn size={'medium'}>Удалить</OutlineBtn>
           <PrimaryBtn size={'medium'}>Сохранить</PrimaryBtn>
@@ -167,4 +135,4 @@ const Address: React.FC = () => {
   );
 };
 
-export default Address;
+export default Accordion;

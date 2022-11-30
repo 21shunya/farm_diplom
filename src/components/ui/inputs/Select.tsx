@@ -102,7 +102,6 @@ const Select: React.FC<ISelect> = ({ placeholder, options }) => {
   const [value, setValue] = useState('');
 
   const changeVisibility = () => {
-    console.log('isHidden:', isHidden);
     if (isHidden) {
       setIsHidden(false);
       setDisplay('flex');
