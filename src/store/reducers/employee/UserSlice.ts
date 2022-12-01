@@ -17,7 +17,7 @@ export const employeeSlice = createSlice({
   name: 'employee',
   initialState,
   reducers: {
-    setEmployeeList(state, action: PayloadAction<Array<any>>) {
+    setEmployeeList(state, action: PayloadAction<IEmployee[]>) {
       state.employeeList = action.payload;
     },
     setLoading(state, action: PayloadAction<boolean>) {
