@@ -12,7 +12,7 @@ import { colors } from '../../theme/colors';
 import logo from '../../assets/logo/logo_vertical.svg';
 import LogoutIcon from '../../assets/icons/LogoutIcon';
 import { useAppDispatch } from '../../hooks/redux';
-import { doLogout } from '../../store/reducers/ActionCreators';
+import { doLogout } from '../../store/reducers/auth/ActionCreators';
 
 const Wrapper = styled.div`
   box-sizing: border-box;

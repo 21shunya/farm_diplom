@@ -1,6 +1,6 @@
-import { AppDispatch } from '../store';
+import { AppDispatch } from '../../store';
 import { setAuth, setAuthError, setCode, setPhone } from './AuthSlice';
-import AuthService from '../../services/AuthService';
+import AuthService from '../../../services/AuthService';
 
 export const getSms = (phone: string) => async (dispatch: AppDispatch) => {
   try {

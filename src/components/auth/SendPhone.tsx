@@ -5,7 +5,7 @@ import { PrimaryBtn } from '../ui/buttons/PrimaryBtn';
 import { AuthForm, BtnGroup } from './AuthForm';
 import { validateAuthInput } from '../../utils';
 import { useAppDispatch } from '../../hooks/redux';
-import { getSms } from '../../store/reducers/ActionCreators';
+import { getSms } from '../../store/reducers/auth/ActionCreators';
 
 interface ISendPhone {
   setHasPhone: (b: boolean) => void;

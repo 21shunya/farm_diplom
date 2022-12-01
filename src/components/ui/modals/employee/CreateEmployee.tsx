@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils/Converting';
 import { PrimaryBtn } from '../../buttons/PrimaryBtn';
-import { employeeModel } from '../../../../utils/models/EmployeeModel';
+import { employeeModel, roleOptions, statusOptions } from '../../../../models/EmployeeModel';
 import TextField from '../../inputs/TextField';
 import { SimpleInput } from '../../inputs/SimpleInput';
 import Select from '../../inputs/Select';
@@ -32,9 +32,9 @@ const CreateEmployee = () => {
             <SimpleInput placeholder={item.title} />
           </TextField>
         ))}
-        {employeeModel.slice(4, 6).map((item) => (
-          <TextField key={item.name} label={item.title}>
-            <Select placeholder={item.title} options={item.options} />
+        {[roleOptions, statusOptions].map((item) => (
+          <TextField key={item.name} label={item.name}>
+            <Select placeholder={''} options={item.options} />
           </TextField>
         ))}
       </Fields>

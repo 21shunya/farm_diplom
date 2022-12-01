@@ -5,7 +5,7 @@ import { PrimaryBtn } from '../ui/buttons/PrimaryBtn';
 import { AuthForm, BtnGroup } from './AuthForm';
 import CodeInput from '../ui/inputs/CodeInput';
 import { validateAuthInput } from '../../utils';
-import { doLogin } from '../../store/reducers/ActionCreators';
+import { doLogin } from '../../store/reducers/auth/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useNavigate } from 'react-router-dom';
 
