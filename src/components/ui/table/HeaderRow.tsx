@@ -15,13 +15,13 @@ const StyledRow = styled.div`
 `;
 
 interface IHeaderRow {
-  data: string[];
+  data: { name: string; title: string }[];
 }
 const HeaderRow: React.FC<IHeaderRow> = ({ data }) => {
   return (
     <StyledRow>
       {data.map((item, idx) => (
-        <HeaderCell key={idx} data={item} />
+        <HeaderCell key={idx} data={item.title} />
       ))}
     </StyledRow>
   );

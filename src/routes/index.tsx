@@ -3,6 +3,7 @@ import EmployeePage from '../pages/EmployeePage';
 
 export const authRoutes = [
   { path: '/auth', element: <AuthPage /> },
+  { path: '/', element: <AuthPage /> },
   { path: '*', element: <AuthPage /> },
 ];
 

@@ -5,6 +5,7 @@ import { colors } from '../../../theme/colors';
 import { pxToRem } from '../../../utils/Converting';
 import { IconBtn } from '../buttons/IconBtn';
 import Pencil from '../../../assets/icons/Pencil';
+import { IEmployee } from '../../../models/response/EmployeeResponse';
 
 const StyledRow = styled.div`
   display: flex;
@@ -20,17 +21,18 @@ const StyledRow = styled.div`
 `;
 
 interface ITableRow {
-  data: (string | JSX.Element)[];
+  model: { name: string; title: string }[];
+  data: IEmployee | any;
 }
 
-const TableRow: React.FC<ITableRow> = ({ data }) => {
+const TableRow: React.FC<ITableRow> = ({ model, data }) => {
   return (
     <StyledRow>
       <IconBtn bg_hover={colors.icon_hover}>
         <Pencil color={colors.dark_grey} />
       </IconBtn>
-      {data.map((item, idx) => (
-        <DataCell key={idx} data={item} />
+      {model.map((item, idx) => (
+        <DataCell key={idx} data={data[item.name]} />
       ))}
     </StyledRow>
   );

@@ -90,7 +90,7 @@ const Option = styled.button`
 
 interface ISelect {
   placeholder?: string;
-  options: string[];
+  options: { name: string; title: string }[];
   eventHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -134,8 +134,8 @@ const Select: React.FC<ISelect> = ({ placeholder, options }) => {
       </IconWrapper>
       <OptionsWrapper hidden={isHidden} display={display}>
         {options.map((item) => (
-          <Option key={item} onClick={() => makeHidden(item)}>
-            {item}
+          <Option key={item.name} onClick={() => makeHidden(item.title)}>
+            {item.title}
           </Option>
         ))}
       </OptionsWrapper>

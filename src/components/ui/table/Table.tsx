@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import TableRow from './TableRow';
-import ColorFlags from '../colorFlags/colorFlags';
 import LastRow from './LastRow';
 import HeaderRow from './HeaderRow';
+import { IEmployee } from '../../../models/response/EmployeeResponse';
 
 const StyledTable = styled.div`
   box-sizing: border-box;
@@ -15,45 +15,17 @@ const StyledTable = styled.div`
   border-radius: 10px;
 `;
 
-const Table: React.FC = () => {
-  const header = ['Фамилия', 'Имя', 'Отчество', 'Телефон', 'Статус'];
-  const data = [
-    [
-      'Иванов',
-      'Иван',
-      'Иванович',
-      '89877773334545',
-      <ColorFlags type={'status'} name={'active'} />,
-    ],
-    [
-      'Иванов',
-      'Иван',
-      'Иванович',
-      '89877773334545',
-      <ColorFlags type={'status'} name={'active'} />,
-    ],
-    ['Иванов', 'Иван', '', '89877773334545', <ColorFlags type={'status'} name={'inactive'} />],
-    [
-      'Иванов',
-      'Иван',
-      'Иванович',
-      '89877773334545',
-      <ColorFlags type={'status'} name={'active'} />,
-    ],
-    [
-      'Иванов',
-      'Иван',
-      'Иванович',
-      '89877773334545',
-      <ColorFlags type={'status'} name={'active'} />,
-    ],
-    ['Иванов', 'Иван', '', '89877773334545', <ColorFlags type={'status'} name={'inactive'} />],
-  ];
+interface ITable {
+  header: { name: string; title: string }[];
+  data: IEmployee[] | any[];
+}
+
+const Table: React.FC<ITable> = ({ header, data }) => {
   return (
     <StyledTable>
       <HeaderRow data={header} />
       {data.map((row, idx) => (
-        <TableRow key={idx} data={row} />
+        <TableRow key={idx} model={header} data={row} />
       ))}
       <LastRow />
     </StyledTable>
