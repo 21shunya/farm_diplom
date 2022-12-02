@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import TableRow from './TableRow';
 import LastRow from './LastRow';
 import HeaderRow from './HeaderRow';
-import { IEmployee } from '../../../models/response/EmployeeResponse';
+import { IEmployeeRes } from '../../../models/response/EmployeeResponse';
 
 const StyledTable = styled.div`
   box-sizing: border-box;
@@ -17,7 +17,7 @@ const StyledTable = styled.div`
 
 interface ITable {
   header: { name: string; title: string }[];
-  data: IEmployee[] | any[];
+  data: IEmployeeRes[] | any[];
 }
 
 const Table: React.FC<ITable> = ({ header, data }) => {

@@ -1,13 +1,13 @@
 export interface EmployeeResponse {
-  payload: { items: IEmployee[] };
+  payload: { items: IEmployeeRes[] };
 }
 
-export interface IEmployee {
+export interface IEmployeeRes {
+  id: string;
+  phone: string;
   name: string;
   surname: string;
   patronymic: string;
-  phone: string;
-  id: string;
   active: boolean;
   role: string;
 }

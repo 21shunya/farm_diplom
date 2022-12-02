@@ -5,7 +5,7 @@ import { colors } from '../../../theme/colors';
 import { pxToRem } from '../../../utils/Converting';
 import { IconBtn } from '../buttons/IconBtn';
 import Pencil from '../../../assets/icons/Pencil';
-import { IEmployee } from '../../../models/response/EmployeeResponse';
+import { IEmployeeRes } from '../../../models/response/EmployeeResponse';
 
 const StyledRow = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const StyledRow = styled.div`
 
 interface ITableRow {
   model: { name: string; title: string }[];
-  data: IEmployee | any;
+  data: IEmployeeRes | any;
 }
 
 const TableRow: React.FC<ITableRow> = ({ model, data }) => {

@@ -68,6 +68,7 @@ const OptionsWrapper = styled.div<IOptions>`
   border-radius: 12px;
 
   background: ${colors.white};
+  z-index: 2;
 `;
 
 const Option = styled.button`
@@ -91,10 +92,10 @@ const Option = styled.button`
 interface ISelect {
   placeholder?: string;
   options: { name: string; title: string }[];
-  eventHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  eventHandler?: (value: string) => void;
 }
 
-const Select: React.FC<ISelect> = ({ placeholder, options }) => {
+const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
   const [isHidden, setIsHidden] = useState(true);
   const [display, setDisplay] = useState('none');
   const [animation, setAnimation] = useState('');
@@ -115,8 +116,11 @@ const Select: React.FC<ISelect> = ({ placeholder, options }) => {
     }
   };
 
-  const makeHidden = (option: string) => {
+  const makeHidden = (option: string, optionName: string) => {
     setValue(option);
+    if (eventHandler) {
+      eventHandler(optionName);
+    }
     setIsHidden(true);
     setDisplay('none');
   };
@@ -134,7 +138,7 @@ const Select: React.FC<ISelect> = ({ placeholder, options }) => {
       </IconWrapper>
       <OptionsWrapper hidden={isHidden} display={display}>
         {options.map((item) => (
-          <Option key={item.name} onClick={() => makeHidden(item.title)}>
+          <Option key={item.name} onClick={() => makeHidden(item.title, item.name)}>
             {item.title}
           </Option>
         ))}

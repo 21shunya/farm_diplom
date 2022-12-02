@@ -1,4 +1,4 @@
-export const employeeModel = [
+export const employeeModel: { name: string; title: string }[] = [
   { name: 'surname', title: 'Фамилия' },
   { name: 'name', title: 'Имя' },
   { name: 'patronymic', title: 'Отчество' },
@@ -11,8 +11,9 @@ export const roleOptions = {
   name: 'Роль',
   options: [
     { name: '', title: 'Все' },
-    { name: 'admin', title: 'Админ' },
-    { name: 'courier', title: 'Курьер' },
+    { name: 'SAdmin', title: 'SA Админ' },
+    { name: 'Admin', title: 'Админ' },
+    { name: 'Courier', title: 'Курьер' },
   ],
 };
 

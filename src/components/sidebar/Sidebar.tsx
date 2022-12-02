@@ -1,6 +1,6 @@
 import React from 'react';
 import NavButton from './NavButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PeopleIcon from '../../assets/icons/PeopleIcon';
 import BasketIcon from '../../assets/icons/BasketIcon';
 import PersonIcon from '../../assets/icons/PersonIcon';
@@ -43,6 +43,7 @@ const NavButtons = styled.div`
 
 const Sidebar = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const btns = [
     { name: 'Клиенты', path: '/clients', icon: <PeopleIcon /> },
@@ -52,6 +53,11 @@ const Sidebar = () => {
     { name: 'Аптеки', path: '/farms', icon: <FarmIcon /> },
     { name: 'Логотипы', path: '/logos', icon: <FarmIcon /> },
   ];
+
+  const logout = () => {
+    dispatch(doLogout());
+    navigate('/auth');
+  };
 
   return (
     <Wrapper>
@@ -66,7 +72,7 @@ const Sidebar = () => {
         </NavButtons>
         <NavButton
           color={colors.brand}
-          onClick={() => dispatch(doLogout())}
+          onClick={() => logout()}
           icon={<LogoutIcon color={colors.brand} />}
           name={'Выйти'}
         />

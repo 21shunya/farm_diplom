@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../../utils/Converting';
 import { colors } from '../../../theme/colors';
@@ -6,7 +6,11 @@ import { getTypography } from '../../../theme/typography';
 import { IconBtn } from '../buttons/IconBtn';
 import close from '../../../assets/icons/delete.svg';
 
-const Wrapper = styled.div`
+interface IWrapper {
+  visibility: 'hidden' | 'visible';
+}
+
+const Wrapper = styled.div<IWrapper>`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -17,6 +21,7 @@ const Wrapper = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
+  visibility: ${({ visibility }) => visibility};
 `;
 
 const Container = styled.div`
@@ -40,15 +45,18 @@ const Title = styled.div`
 `;
 
 interface IModalWrapper {
+  visibility: 'hidden' | 'visible';
+  title: string;
   children: JSX.Element;
+  setVisibility: Dispatch<SetStateAction<'hidden' | 'visible'>>;
 }
-const ModalWrapper: React.FC<IModalWrapper> = ({ children }) => {
+const ModalWrapper: React.FC<IModalWrapper> = ({ title, children, visibility, setVisibility }) => {
   return (
-    <Wrapper>
+    <Wrapper visibility={visibility}>
       <Container>
         <Title>
-          Some Title{' '}
-          <IconBtn>
+          {title}
+          <IconBtn onClick={() => setVisibility('hidden')}>
             <img src={close} alt={'close'} />
           </IconBtn>
         </Title>

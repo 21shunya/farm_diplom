@@ -14,3 +14,17 @@ export const fetchEmployees = () => async (dispatch: AppDispatch) => {
     }
   }
 };
+
+export const addEmployee =
+  (name: string, surname: string, patronymic: string, phone: string, role: string) =>
+  async (dispatch: AppDispatch) => {
+    try {
+      await EmployeeService.postUser(name, surname, patronymic, phone, role);
+    } catch (e) {
+      if (e instanceof Error) {
+        dispatch(setError(e.message));
+      } else {
+        console.log('Unexpected error', e);
+      }
+    }
+  };

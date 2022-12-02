@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Heading from '../components/heading/Heading';
 import { PrimaryBtn } from '../components/ui/buttons/PrimaryBtn';
 import PageWrapper from '../components/ui/pageWrapper/PageWrapper';
@@ -11,22 +11,25 @@ import { employeeModel, roleOptions, statusOptions } from '../models/EmployeeMod
 import { fetchEmployees } from '../store/reducers/employee/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import Table from '../components/ui/table/Table';
+import ModalWrapper from '../components/ui/modals/ModalWrapper';
+import CreateEmployee from '../components/ui/modals/employee/CreateEmployee';
 
 const EmployeePage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { employeeList } = useAppSelector((state) => state.employeeReducer);
-  console.log(employeeList);
+  const [visibility, setVisibility] = useState<'hidden' | 'visible'>('hidden');
 
   useEffect(() => {
     dispatch(fetchEmployees());
-  });
+  }, []);
 
   return (
     <PageWrapper>
       <Heading>
-        <PrimaryBtn size={'medium'}>Добавить Сотрудника</PrimaryBtn>
+        <PrimaryBtn size={'medium'} onClick={() => setVisibility('visible')}>
+          Добавить Сотрудника
+        </PrimaryBtn>
       </Heading>
-
       <ContentWrapper>
         <TableInputs>
           <TextField>
@@ -43,6 +46,13 @@ const EmployeePage: React.FC = () => {
         ) : (
           <span>Пока нет сотрудников</span>
         )}
+        <ModalWrapper
+          title={'Создание Сотрудника'}
+          visibility={visibility}
+          setVisibility={setVisibility}
+        >
+          <CreateEmployee setVisibility={setVisibility} />
+        </ModalWrapper>
       </ContentWrapper>
     </PageWrapper>
   );
