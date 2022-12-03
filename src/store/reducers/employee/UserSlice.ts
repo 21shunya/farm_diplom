@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IEmployeeRes } from '../../../models/response/EmployeeResponse';
+import { EmployeeRes } from '../../../models/response/EmployeeResponse';
 
 interface IEmployeeSlice {
-  employeeList: IEmployeeRes[];
+  employeeList: EmployeeRes[];
+  employee: EmployeeRes;
   isLoading: boolean;
   error: string;
 }
 
 const initialState: IEmployeeSlice = {
   employeeList: [],
+  employee: { id: '', name: '', surname: '', patronymic: '', phone: '', role: '', active: true },
   isLoading: false,
   error: '',
 };
@@ -17,8 +19,11 @@ export const employeeSlice = createSlice({
   name: 'employee',
   initialState,
   reducers: {
-    setEmployeeList(state, action: PayloadAction<IEmployeeRes[]>) {
+    setEmployeeList(state, action: PayloadAction<EmployeeRes[]>) {
       state.employeeList = action.payload;
+    },
+    setEmployee(state, action: PayloadAction<EmployeeRes>) {
+      state.employee = action.payload;
     },
     setLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
@@ -29,6 +34,6 @@ export const employeeSlice = createSlice({
   },
 });
 
-export const { setEmployeeList, setLoading, setError } = employeeSlice.actions;
+export const { setEmployeeList, setLoading, setError, setEmployee } = employeeSlice.actions;
 
 export default employeeSlice.reducer;

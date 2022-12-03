@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Heading from '../components/heading/Heading';
-import { PrimaryBtn } from '../components/ui/buttons/PrimaryBtn';
-import PageWrapper from '../components/ui/pageWrapper/PageWrapper';
-import { ContentWrapper } from '../components/ui/pageWrapper/ContentWrapper';
-import { TableInputs } from '../components/ui/table/TableInputs';
-import TextField from '../components/ui/inputs/TextField';
-import { SimpleInput } from '../components/ui/inputs/SimpleInput';
-import Select from '../components/ui/inputs/Select';
-import { employeeModel, roleOptions, statusOptions } from '../models/EmployeeModel';
-import { fetchEmployees } from '../store/reducers/employee/ActionCreators';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import Table from '../components/ui/table/Table';
-import ModalWrapper from '../components/ui/modals/ModalWrapper';
-import CreateEmployee from '../components/ui/modals/employee/CreateEmployee';
+import Heading from '../../components/heading/Heading';
+import { PrimaryBtn } from '../../components/ui/buttons/PrimaryBtn';
+import PageWrapper from '../../components/ui/pageWrapper/PageWrapper';
+import { ContentWrapper } from '../../components/ui/pageWrapper/ContentWrapper';
+import { TableInputs } from '../../components/ui/table/TableInputs';
+import TextField from '../../components/ui/inputs/TextField';
+import { SimpleInput } from '../../components/ui/inputs/SimpleInput';
+import Select from '../../components/ui/inputs/Select';
+import { fetchEmployees } from '../../store/reducers/employee/ActionCreators';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import Table from '../../components/ui/table/Table';
+import ModalWrapper from '../../components/ui/modals/ModalWrapper';
+import CreateEmployee from '../../components/ui/modals/employee/CreateEmployee';
+import { employeeResponseModel, roleOptions, statusOptions } from '../../models/EmployeeModel';
 
 const EmployeePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -42,7 +42,7 @@ const EmployeePage: React.FC = () => {
           ))}
         </TableInputs>
         {employeeList.length ? (
-          <Table header={employeeModel} data={employeeList} />
+          <Table header={employeeResponseModel} data={employeeList} />
         ) : (
           <span>Пока нет сотрудников</span>
         )}

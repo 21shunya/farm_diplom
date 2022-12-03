@@ -1,6 +1,6 @@
 import { AppDispatch } from '../../store';
 import EmployeeService from '../../../services/EmployeeService';
-import { setEmployeeList, setError } from './UserSlice';
+import { setEmployee, setEmployeeList, setError } from './UserSlice';
 
 export const fetchEmployees = () => async (dispatch: AppDispatch) => {
   try {
@@ -28,3 +28,16 @@ export const addEmployee =
       }
     }
   };
+
+export const getEmployeeByID = (id: string) => async (dispatch: AppDispatch) => {
+  try {
+    const response = await EmployeeService.getUserById(id);
+    dispatch(setEmployee({ ...response.data.payload }));
+  } catch (e) {
+    if (e instanceof Error) {
+      dispatch(setError(e.message));
+    } else {
+      console.log('Unexpected error', e);
+    }
+  }
+};

@@ -5,7 +5,8 @@ import { colors } from '../../../theme/colors';
 import { pxToRem } from '../../../utils/Converting';
 import { IconBtn } from '../buttons/IconBtn';
 import Pencil from '../../../assets/icons/Pencil';
-import { IEmployeeRes } from '../../../models/response/EmployeeResponse';
+import { EmployeeRes } from '../../../models/response/EmployeeResponse';
+import { useNavigate } from 'react-router-dom';
 
 const StyledRow = styled.div`
   display: flex;
@@ -22,13 +23,15 @@ const StyledRow = styled.div`
 
 interface ITableRow {
   model: { name: string; title: string }[];
-  data: IEmployeeRes | any;
+  data: EmployeeRes | any;
 }
 
 const TableRow: React.FC<ITableRow> = ({ model, data }) => {
+  const navigate = useNavigate();
+
   return (
     <StyledRow>
-      <IconBtn bg_hover={colors.icon_hover}>
+      <IconBtn bg_hover={colors.icon_hover} onClick={() => navigate(`./${data.id}`)}>
         <Pencil color={colors.dark_grey} />
       </IconBtn>
       {model.map((item, idx) => (

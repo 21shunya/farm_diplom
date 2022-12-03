@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../../../utils/Converting';
 import { PrimaryBtn } from '../../buttons/PrimaryBtn';
-import { employeeModel, roleOptions } from '../../../../models/EmployeeModel';
 import TextField from '../../inputs/TextField';
 import { SimpleInput } from '../../inputs/SimpleInput';
 import Select from '../../inputs/Select';
 import { EmployeeRequest } from '../../../../models/request/EmployeeRequest';
 import { useAppDispatch } from '../../../../hooks/redux';
 import { addEmployee } from '../../../../store/reducers/employee/ActionCreators';
+import { employeeRequestModel, roleOptions } from '../../../../models/EmployeeModel';
 
 const Wrapper = styled.div`
   display: flex;
@@ -66,11 +66,11 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
   return (
     <Wrapper>
       <Fields>
-        {employeeModel.slice(0, 4).map((item) => (
+        {employeeRequestModel.slice(0, 4).map((item) => (
           <TextField key={item.name} label={item.title}>
             <SimpleInput
               placeholder={item.title}
-              value={user[item.name as keyof EmployeeRequest]}
+              value={user[item.name]}
               onChange={(e) => eventHandler(e, item.name)}
             />
           </TextField>
