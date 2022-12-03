@@ -1,7 +1,6 @@
-import { EmployeeRes } from './response/EmployeeResponse';
-import { EmployeeRequest } from './request/EmployeeRequest';
+import { EmployeeResponse, EmployeeRequest } from './Employee';
 
-export const employeeResponseModel: { name: keyof EmployeeRes; title: string }[] = [
+export const employeeResponseModel: { name: keyof EmployeeResponse; title: string }[] = [
   { name: 'surname', title: 'Фамилия' },
   { name: 'name', title: 'Имя' },
   { name: 'patronymic', title: 'Отчество' },

@@ -5,8 +5,8 @@ import { colors } from '../../../theme/colors';
 import { pxToRem } from '../../../utils/Converting';
 import { IconBtn } from '../buttons/IconBtn';
 import Pencil from '../../../assets/icons/Pencil';
-import { EmployeeRes } from '../../../models/response/EmployeeResponse';
 import { useNavigate } from 'react-router-dom';
+import { EmployeeResponse } from '../../../models/Employee';
 
 const StyledRow = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ const StyledRow = styled.div`
 
 interface ITableRow {
   model: { name: string; title: string }[];
-  data: EmployeeRes | any;
+  data: EmployeeResponse | any;
 }
 
 const TableRow: React.FC<ITableRow> = ({ model, data }) => {

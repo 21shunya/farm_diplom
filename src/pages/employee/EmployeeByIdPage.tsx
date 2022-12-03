@@ -16,6 +16,7 @@ const EmployeeByIdPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
   const { employee } = useAppSelector((state) => state.employeeReducer);
+  // const { user, setUser };
 
   useEffect(() => {
     if (id) {
@@ -32,7 +33,7 @@ const EmployeeByIdPage: React.FC = () => {
       <ContentWrapper>
         {employeeResponseModel.slice(0, 4).map((item) => (
           <TextField key={item.name} label={item.title}>
-            <SimpleInput defaultValue={employee[item.name].toString()} />
+            <SimpleInput defaultValue={(employee[item.name] ?? '').toString()} />
           </TextField>
         ))}
         {[roleOptions, statusOptions].map((item) => (

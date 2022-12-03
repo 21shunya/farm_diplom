@@ -3,7 +3,6 @@ import React from 'react';
 import { getTypography, textTypes } from '../../../theme/typography';
 import { text_colors } from '../../../theme/colors';
 import { colorFlags } from '../../../theme/colorFlags';
-import activeIcon from '../../../assets/icons/check.svg';
 import { pxToEm } from '../../../utils/Converting';
 
 const fontSize = textTypes.textRegular.font_size;
@@ -40,8 +39,8 @@ interface IRole {
 type IColorFlags = IStatus | IRole;
 
 const ColorFlags: React.FC<IColorFlags> = ({ type, name }) => {
-  let bg = '#FFFFF';
-  let icon = activeIcon;
+  let bg: string;
+  let icon: string;
 
   const { width } = colorFlags[type];
 

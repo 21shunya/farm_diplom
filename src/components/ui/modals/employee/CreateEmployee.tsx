@@ -5,7 +5,7 @@ import { PrimaryBtn } from '../../buttons/PrimaryBtn';
 import TextField from '../../inputs/TextField';
 import { SimpleInput } from '../../inputs/SimpleInput';
 import Select from '../../inputs/Select';
-import { EmployeeRequest } from '../../../../models/request/EmployeeRequest';
+import { EmployeeRequest } from '../../../../models/Employee';
 import { useAppDispatch } from '../../../../hooks/redux';
 import { addEmployee } from '../../../../store/reducers/employee/ActionCreators';
 import { employeeRequestModel, roleOptions } from '../../../../models/EmployeeModel';

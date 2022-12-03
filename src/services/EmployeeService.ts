@@ -1,10 +1,10 @@
 import api from '../api';
 import { AxiosResponse } from 'axios';
-import { EmployeeByIdResponse, EmployeeResponse } from '../models/response/EmployeeResponse';
+import { EmployeeByIdResponse, IEmployeeResponse } from '../models/Employee';
 
 export default class EmployeeService {
-  static async getUsers(): Promise<AxiosResponse<EmployeeResponse>> {
-    return api.get<EmployeeResponse>('/admin/user');
+  static async getUsers(): Promise<AxiosResponse<IEmployeeResponse>> {
+    return api.get<IEmployeeResponse>('/admin/user');
   }
 
   static async postUser(
@@ -13,8 +13,8 @@ export default class EmployeeService {
     patronymic: string,
     phone: string,
     role: string,
-  ): Promise<AxiosResponse<EmployeeResponse>> {
-    return api.post<EmployeeResponse>('/admin/employee', {
+  ): Promise<AxiosResponse<IEmployeeResponse>> {
+    return api.post<IEmployeeResponse>('/admin/employee', {
       name,
       surname,
       patronymic,
@@ -26,4 +26,6 @@ export default class EmployeeService {
   static async getUserById(id: string): Promise<AxiosResponse<EmployeeByIdResponse>> {
     return api.get<EmployeeByIdResponse>(`/admin/user/${id}`);
   }
+
+  // static async updateUser();
 }
