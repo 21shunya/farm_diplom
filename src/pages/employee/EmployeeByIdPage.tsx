@@ -30,7 +30,7 @@ const EmployeeByIdPage: React.FC = () => {
         <OutlineBtn size={'medium'}>Удалить</OutlineBtn>
         <PrimaryBtn size={'medium'}>Сохранить</PrimaryBtn>
       </Heading>
-      <ContentWrapper>
+      <ContentWrapper flex_dir={'row'} flex_wrap={'wrap'} gap={42}>
         {employeeResponseModel.slice(0, 4).map((item) => (
           <TextField key={item.name} label={item.title}>
             <SimpleInput defaultValue={(employee[item.name] ?? '').toString()} />

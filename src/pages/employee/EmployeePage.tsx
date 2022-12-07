@@ -30,7 +30,7 @@ const EmployeePage: React.FC = () => {
           Добавить Сотрудника
         </PrimaryBtn>
       </Heading>
-      <ContentWrapper>
+      <ContentWrapper flex_dir={'column'} flex_wrap={'nowrap'} gap={32}>
         <TableInputs>
           <TextField>
             <SimpleInput placeholder={'Поиск'} />
