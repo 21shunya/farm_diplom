@@ -11,7 +11,11 @@ export class EmployeeResponse extends EmployeeRequest {
   public active: boolean;
 }
 
-export class UpdateEmployee extends EmployeeRequest {
+export class UpdateEmployee {
+  public name: string;
+  public surname: string;
+  public patronymic: string;
+  public role: string;
   public active: boolean;
 }
 
@@ -21,4 +25,8 @@ export interface IEmployeeResponse {
 
 export interface EmployeeByIdResponse {
   payload: EmployeeResponse;
+}
+
+export interface IUpdateEmployee {
+  payload: UpdateEmployee;
 }
