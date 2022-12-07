@@ -57,9 +57,7 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
         return;
       }
     }
-    dispatch(
-      addEmployee(newUser.name, newUser.surname, newUser.patronymic, newUser.phone, newUser.role),
-    );
+    dispatch(addEmployee(newUser));
     setVisibility('hidden');
   };
 
