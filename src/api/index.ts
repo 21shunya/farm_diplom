@@ -13,4 +13,22 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+api.interceptors.request.use((request) => {
+  const { baseURL, url, method, data, params } = request;
+
+  console.log(`REQUEST ${url}:`, { baseURL, url, method, params, data });
+  return request;
+});
+
+api.interceptors.response.use((response) => {
+  const {
+    data,
+    status,
+    request: { responseURL },
+  } = response;
+
+  console.log(`RESPONSE ${responseURL.slice(30)}:`, { data, status, responseURL });
+  return response;
+});
+
 export default api;
