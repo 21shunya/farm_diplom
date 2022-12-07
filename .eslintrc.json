@@ -24,6 +24,7 @@
         "@typescript-eslint/no-unused-vars": "error",
         "no-unused-vars": "off",
         "curly": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
         "unused-imports/no-unused-imports": "error",
         "unused-imports/no-unused-vars": [
             "error",
