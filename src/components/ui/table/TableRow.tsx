@@ -35,7 +35,7 @@ const TableRow: React.FC<ITableRow> = ({ model, data }) => {
         <Pencil color={colors.dark_grey} />
       </IconBtn>
       {model.map((item, idx) => (
-        <DataCell key={idx} data={data[item.name]} />
+        <DataCell key={idx} data={data[item.name] ? data[item.name].toString() : ''} />
       ))}
     </StyledRow>
   );
