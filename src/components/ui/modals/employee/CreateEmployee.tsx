@@ -5,7 +5,7 @@ import { PrimaryBtn } from '../../buttons/PrimaryBtn';
 import TextField from '../../inputs/TextField';
 import { SimpleInput } from '../../inputs/SimpleInput';
 import Select from '../../inputs/Select';
-import { EmployeeRequest } from '../../../../models/Employee';
+import { EmployeeRequest, Roles } from '../../../../models/Employee';
 import { useAppDispatch } from '../../../../hooks/redux';
 import { addEmployee } from '../../../../store/reducers/employee/ActionCreators';
 import { employeeRequestModel, roleOptions } from '../../../../models/EmployeeModel';
@@ -37,21 +37,31 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
     surname: '',
     patronymic: '',
     phone: '',
-    role: '',
+    role: 'Courier',
   });
 
   const eventHandler = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
     setUser((prevState) => ({ ...prevState, [key]: e.target.value }));
   };
 
-  const selectHandler = (value: string) => {
+  const selectHandler = (value: Roles) => {
     setUser((prevState) => ({ ...prevState, role: value }));
   };
 
   const createEmployee = () => {
-    const newUser: EmployeeRequest = { name: '', surname: '', patronymic: '', phone: '', role: '' };
-    for (const key in user) {
-      newUser[key as keyof EmployeeRequest] = user[key as keyof EmployeeRequest].trim();
+    const newUser: EmployeeRequest = {
+      name: '',
+      surname: '',
+      patronymic: '',
+      phone: '',
+      role: 'Courier',
+    };
+
+    let key: keyof EmployeeRequest;
+
+    for (key in user) {
+      console.log(`${key} type: ${typeof user[key]}`);
+      // newUser[key] = user[key];
       if (newUser[key as keyof EmployeeRequest] === '') {
         setVisibility('hidden');
         return;

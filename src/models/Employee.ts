@@ -1,9 +1,11 @@
+export type Roles = 'SAdmin' | 'Admin' | 'Courier';
+
 export class EmployeeRequest {
   public phone: string;
   public name: string;
   public surname: string;
   public patronymic: string;
-  public role: string;
+  public role: Roles;
 }
 
 export class EmployeeResponse extends EmployeeRequest {
