@@ -4,6 +4,7 @@ import { getTypography, textTypes } from '../../../theme/typography';
 import { text_colors } from '../../../theme/colors';
 import { colorFlags } from '../../../theme/colorFlags';
 import { pxToEm } from '../../../utils/Converting';
+import { Roles } from '../../../models/Employee';
 
 const fontSize = textTypes.textRegular.font_size;
 
@@ -34,7 +35,7 @@ interface IStatus {
 
 interface IRole {
   type: 'role';
-  name: 'courier' | 'admin';
+  name: Roles;
 }
 type IColorFlags = IStatus | IRole;
 
@@ -51,6 +52,11 @@ const ColorFlags: React.FC<IColorFlags> = ({ type, name }) => {
     bg = colorFlags.role[name].bg;
     icon = colorFlags.role[name].icon;
   }
+
+  // const bg = colorFlags.role[name].bg;
+  // const icon = colorFlags.role[name].icon;
+  // const bg = '#FCF1B5';
+  // const icon = adminIcon;
 
   return (
     <Wrapper width={width} bg={bg}>

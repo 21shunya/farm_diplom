@@ -9,15 +9,16 @@ import { SimpleInput } from '../../components/ui/inputs/SimpleInput';
 import Select from '../../components/ui/inputs/Select';
 import { fetchEmployees } from '../../store/reducers/employee/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import Table from '../../components/ui/table/Table';
 import ModalWrapper from '../../components/ui/modals/ModalWrapper';
 import CreateEmployee from '../../components/ui/modals/employee/CreateEmployee';
-import { employeeResponseModel, roleOptions, statusOptions } from '../../models/EmployeeModel';
+import { employeeResponseModel, roleOptions } from '../../models/EmployeeModel';
+import Table from '../../components/ui/table/Table';
 
 const EmployeePage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { employeeList } = useAppSelector((state) => state.employeeReducer);
   const [visibility, setVisibility] = useState<'hidden' | 'visible'>('hidden');
+  console.log(employeeList);
 
   useEffect(() => {
     dispatch(fetchEmployees());
@@ -35,7 +36,7 @@ const EmployeePage: React.FC = () => {
           <TextField>
             <SimpleInput placeholder={'Поиск'} />
           </TextField>
-          {[roleOptions, statusOptions].map((item) => (
+          {[roleOptions].map((item) => (
             <TextField key={item.name} label={item.name}>
               <Select placeholder={''} options={item.options} />
             </TextField>

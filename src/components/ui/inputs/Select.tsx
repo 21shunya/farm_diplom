@@ -5,6 +5,7 @@ import { pxToEm } from '../../../utils/Converting';
 import { getTypography } from '../../../theme/typography';
 import { colors } from '../../../theme/colors';
 import ArrowDown from '../../../assets/icons/ArrowDown';
+import { Roles } from '../../../models/Employee';
 
 const SelectWrapper = styled.div`
   position: relative;
@@ -91,8 +92,8 @@ const Option = styled.button`
 
 interface ISelect {
   placeholder?: string;
-  options: { name: string; title: string }[];
-  eventHandler?: (value: string) => void;
+  options: { name: Roles; title: string }[];
+  eventHandler?: (value: Roles) => void;
 }
 
 const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
@@ -116,7 +117,7 @@ const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
     }
   };
 
-  const makeHidden = (option: string, optionName: string) => {
+  const makeHidden = (option: string, optionName: Roles) => {
     setValue(option);
     if (eventHandler) {
       eventHandler(optionName);
