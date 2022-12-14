@@ -1,4 +1,4 @@
-import { EmployeeResponse, EmployeeRequest } from './Employee';
+import { EmployeeResponse, EmployeeRequest, Roles } from './Employee';
 
 export const employeeResponseModel: { name: keyof EmployeeResponse; title: string }[] = [
   { name: 'surname', title: 'Фамилия' },
@@ -17,10 +17,20 @@ export const employeeRequestModel: { name: keyof EmployeeRequest; title: string 
   { name: 'role', title: 'Роль' },
 ];
 
-export const roleOptions = {
+interface RoleOptions {
+  name: Roles;
+  title: string;
+}
+
+interface IRoleOptions {
+  name: string;
+  options: RoleOptions[];
+}
+
+export const roleOptions: IRoleOptions = {
   name: 'Роль',
   options: [
-    { name: '', title: 'Все' },
+    // { name: '', title: 'Все' },
     { name: 'SAdmin', title: 'SA Админ' },
     { name: 'Admin', title: 'Админ' },
     { name: 'Courier', title: 'Курьер' },
