@@ -8,7 +8,7 @@ import Select from '../../inputs/Select';
 import { EmployeeRequest, Roles } from '../../../../models/Employee';
 import { useAppDispatch } from '../../../../hooks/redux';
 import { addEmployee } from '../../../../store/reducers/employee/ActionCreators';
-import { employeeRequestModel, roleOptions } from '../../../../models/EmployeeModel';
+import { employeeRequestModel, roleInfo } from '../../../../models/EmployeeModel';
 
 const Wrapper = styled.div`
   display: flex;
@@ -83,10 +83,10 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
             />
           </TextField>
         ))}
-        <TextField key={roleOptions.name} label={roleOptions.name}>
+        <TextField key={roleInfo.name} label={roleInfo.name}>
           <Select
             placeholder={''}
-            options={roleOptions.options.slice(1, 4)}
+            options={roleInfo.options.slice(1, 4)}
             eventHandler={selectHandler}
           />
         </TextField>

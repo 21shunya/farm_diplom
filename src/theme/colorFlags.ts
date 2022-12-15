@@ -17,11 +17,15 @@ export const colorFlags = {
   },
   role: {
     width: 98,
-    courier: {
+    Courier: {
       bg: '#EFDDFA',
       icon: courierIcon,
     },
-    admin: {
+    Admin: {
+      bg: '#FCF1B5',
+      icon: adminIcon,
+    },
+    SAdmin: {
       bg: '#FCF1B5',
       icon: adminIcon,
     },

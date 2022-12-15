@@ -3,6 +3,7 @@ import { pxToRem } from '../../../utils/Converting';
 import { colors } from '../../../theme/colors';
 import React from 'react';
 import HeaderCell from './HeaderCell';
+import { EmployeeResponse } from '../../../models/Employee';
 
 const StyledRow = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const StyledRow = styled.div`
 `;
 
 interface IHeaderRow {
-  data: { name: string; title: string }[];
+  data: { name: keyof EmployeeResponse; title: string }[];
 }
 const HeaderRow: React.FC<IHeaderRow> = ({ data }) => {
   return (
