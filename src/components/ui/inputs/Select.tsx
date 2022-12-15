@@ -5,7 +5,8 @@ import { pxToEm } from '../../../utils/Converting';
 import { getTypography } from '../../../theme/typography';
 import { colors } from '../../../theme/colors';
 import ArrowDown from '../../../assets/icons/ArrowDown';
-import { Roles } from '../../../models/Employee';
+import { Roles, Statuses } from '../../../models/Employee';
+import { IRoleOptions, IStatusOptions } from '../../../models/EmployeeModel';
 
 const SelectWrapper = styled.div`
   position: relative;
@@ -65,7 +66,7 @@ const OptionsWrapper = styled.div<IOptions>`
   flex-wrap: wrap;
 
   padding: ${pxToEm(16, 18)}em 0;
-  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
 
   background: ${colors.white};
@@ -92,8 +93,8 @@ const Option = styled.button`
 
 interface ISelect {
   placeholder?: string;
-  options: { name: Roles; title: string }[];
-  eventHandler?: (value: Roles) => void;
+  options: (IRoleOptions | IStatusOptions)[];
+  eventHandler?: ((value: Roles) => void) | ((value: Statuses) => void);
 }
 
 const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
@@ -117,10 +118,10 @@ const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
     }
   };
 
-  const makeHidden = (option: string, optionName: Roles) => {
+  const makeHidden = (option: string, optionName: Roles | Statuses) => {
     setValue(option);
     if (eventHandler) {
-      eventHandler(optionName);
+      eventHandler(optionName as never);
     }
     setIsHidden(true);
     setDisplay('none');

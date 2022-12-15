@@ -9,7 +9,19 @@ import { SimpleInput } from '../../components/ui/inputs/SimpleInput';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getEmployeeByID } from '../../store/reducers/employee/ActionCreators';
 import { useParams } from 'react-router-dom';
-import { employeeResponseModel } from '../../models/EmployeeModel';
+import { employeeResponseModel, roleInfo, statusInfo } from '../../models/EmployeeModel';
+import Select from '../../components/ui/inputs/Select';
+import styled from 'styled-components';
+import { pxToRem } from '../../utils/Converting';
+
+const FieldsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: ${pxToRem(48)}rem;
+  //align-self: stretch;
+`;
 
 const EmployeeByIdPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -30,16 +42,18 @@ const EmployeeByIdPage: React.FC = () => {
         <PrimaryBtn size={'medium'}>Сохранить</PrimaryBtn>
       </Heading>
       <ContentWrapper flex_dir={'row'} flex_wrap={'wrap'} gap={42}>
-        {employeeResponseModel.slice(0, 4).map((item) => (
-          <TextField key={item.name} label={item.title}>
-            <SimpleInput defaultValue={(employee[item.name] ?? '').toString()} />
-          </TextField>
-        ))}
-        {/*{[roleOptions, statusOptions].map((item) => (*/}
-        {/*  <TextField key={item.name} label={item.name}>*/}
-        {/*    <Select placeholder={''} options={item.options.slice(1)} />*/}
-        {/*  </TextField>*/}
-        {/*))}*/}
+        <FieldsWrapper>
+          {employeeResponseModel.slice(0, 4).map((item) => (
+            <TextField key={item.name} label={item.title}>
+              <SimpleInput defaultValue={(employee[item.name] ?? '').toString()} />
+            </TextField>
+          ))}
+          {[roleInfo, statusInfo].map((item) => (
+            <TextField key={item.name} label={item.name}>
+              <Select placeholder={''} options={item.options} />
+            </TextField>
+          ))}
+        </FieldsWrapper>
       </ContentWrapper>
     </PageWrapper>
   );

@@ -21,7 +21,7 @@ export const employeeRequestModel: { name: keyof EmployeeRequest; title: string 
   { name: 'role', title: 'Роль' },
 ];
 
-interface IRoleOptions {
+export interface IRoleOptions {
   name: Roles;
   title: string;
   bg: string;
@@ -45,7 +45,7 @@ export const roleInfo: IRoleInfo = {
   width: 98,
 };
 
-interface IStatusOptions {
+export interface IStatusOptions {
   name: 'active' | 'inactive';
   title: string;
   bg: string;
