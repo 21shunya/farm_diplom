@@ -8,19 +8,27 @@ export const fetchEmployees = () => {
   return async (dispatch: AppDispatch) => {
     try {
       const response = await EmployeeService.getUsers();
-      const responseItems = response.data.payload.items;
+      const employeeItems = response.data.payload.items;
 
-      const newUserList: IEmployee[] = responseItems.map((item): IEmployee => {
-        return {
-          id: item.id,
-          name: item.name,
-          patronymic: item.patronymic,
-          surname: item.surname,
-          phone: item.phone,
-          active: <ColorFlags type={'status'} name={item.active ? 'active' : 'inactive'} />,
-          role: <ColorFlags type={'role'} name={item.role} />,
-        };
-      });
+      let newUserList: IEmployee[] = [];
+
+      employeeItems.reduce((prev: IEmployee[], current): IEmployee[] => {
+        if (current.role === 'Courier' || current.role === 'Admin' || current.role === 'SAdmin') {
+          newUserList = [
+            ...prev,
+            {
+              id: current.id,
+              name: current.name,
+              patronymic: current.patronymic,
+              surname: current.surname,
+              phone: current.phone,
+              active: <ColorFlags type={'status'} name={current.active ? 'active' : 'inactive'} />,
+              role: <ColorFlags type={'role'} name={current.role} />,
+            },
+          ];
+        }
+        return newUserList;
+      }, []);
 
       dispatch(setEmployeeList(newUserList));
     } catch (e) {

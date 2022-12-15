@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import React from 'react';
 import { getTypography, textTypes } from '../../../theme/typography';
 import { text_colors } from '../../../theme/colors';
-import { colorFlags } from '../../../theme/colorFlags';
 import { pxToEm } from '../../../utils/Converting';
 import { Roles } from '../../../models/Employee';
+import { roleInfo, statusInfo } from '../../../models/EmployeeModel';
 
 const fontSize = textTypes.textRegular.font_size;
 
@@ -40,28 +40,29 @@ interface IRole {
 type IColorFlags = IStatus | IRole;
 
 const ColorFlags: React.FC<IColorFlags> = ({ type, name }) => {
-  let bg: string;
-  let icon: string;
-
-  const { width } = colorFlags[type];
+  let bg = '';
+  let icon = '';
+  let title = '';
+  let width = 0;
 
   if (type === 'status') {
-    bg = colorFlags.status[name].bg;
-    icon = colorFlags.status[name].icon;
+    const status = statusInfo.options.find((item) => item.name === name);
+    bg = status?.bg ?? '';
+    icon = status?.icon ?? '';
+    title = status?.title ?? '';
+    width = statusInfo.width;
   } else {
-    bg = colorFlags.role[name].bg;
-    icon = colorFlags.role[name].icon;
+    const role = roleInfo.options.find((item) => item.name === name);
+    bg = role?.bg ?? '';
+    icon = role?.icon ?? '';
+    title = role?.title ?? '';
+    width = roleInfo.width;
   }
-
-  // const bg = colorFlags.role[name].bg;
-  // const icon = colorFlags.role[name].icon;
-  // const bg = '#FCF1B5';
-  // const icon = adminIcon;
 
   return (
     <Wrapper width={width} bg={bg}>
       <img src={icon} alt={''} />
-      {name}
+      {title}
     </Wrapper>
   );
 };
