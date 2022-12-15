@@ -4,6 +4,7 @@ import TableRow from './TableRow';
 import LastRow from './LastRow';
 import HeaderRow from './HeaderRow';
 import { EmployeeResponse } from '../../../models/Employee';
+import { IEmployee } from '../../../store/reducers/employee/UserSlice';
 
 const StyledTable = styled.div`
   box-sizing: border-box;
@@ -16,8 +17,8 @@ const StyledTable = styled.div`
 `;
 
 interface ITable {
-  header: { name: string; title: string }[];
-  data: EmployeeResponse[] | any[];
+  header: { name: keyof EmployeeResponse; title: string }[];
+  data: IEmployee[];
 }
 
 const Table: React.FC<ITable> = ({ header, data }) => {

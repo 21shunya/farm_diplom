@@ -6,11 +6,10 @@ import { OutlineBtn } from '../../components/ui/buttons/OutlineBtn';
 import { PrimaryBtn } from '../../components/ui/buttons/PrimaryBtn';
 import TextField from '../../components/ui/inputs/TextField';
 import { SimpleInput } from '../../components/ui/inputs/SimpleInput';
-import Select from '../../components/ui/inputs/Select';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getEmployeeByID } from '../../store/reducers/employee/ActionCreators';
 import { useParams } from 'react-router-dom';
-import { employeeResponseModel, roleOptions, statusOptions } from '../../models/EmployeeModel';
+import { employeeResponseModel } from '../../models/EmployeeModel';
 
 const EmployeeByIdPage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -36,11 +35,11 @@ const EmployeeByIdPage: React.FC = () => {
             <SimpleInput defaultValue={(employee[item.name] ?? '').toString()} />
           </TextField>
         ))}
-        {[roleOptions, statusOptions].map((item) => (
-          <TextField key={item.name} label={item.name}>
-            <Select placeholder={''} options={item.options.slice(1)} />
-          </TextField>
-        ))}
+        {/*{[roleOptions, statusOptions].map((item) => (*/}
+        {/*  <TextField key={item.name} label={item.name}>*/}
+        {/*    <Select placeholder={''} options={item.options.slice(1)} />*/}
+        {/*  </TextField>*/}
+        {/*))}*/}
       </ContentWrapper>
     </PageWrapper>
   );
