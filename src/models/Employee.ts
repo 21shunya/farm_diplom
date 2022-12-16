@@ -1,4 +1,5 @@
 export type Roles = 'SAdmin' | 'Admin' | 'Courier';
+export type Statuses = 'active' | 'inactive';
 
 export class EmployeeRequest {
   public phone: string;
