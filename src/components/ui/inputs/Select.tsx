@@ -5,7 +5,7 @@ import { pxToEm } from '../../../utils/Converting';
 import { getTypography } from '../../../theme/typography';
 import { colors } from '../../../theme/colors';
 import ArrowDown from '../../../assets/icons/ArrowDown';
-import { Roles, Statuses } from '../../../models/Employee';
+import { RoleEnum, StatusEnum } from '../../../models/Employee';
 import { IRoleOptions, IStatusOptions } from '../../../models/EmployeeModel';
 
 const SelectWrapper = styled.div`
@@ -94,7 +94,7 @@ const Option = styled.button`
 interface ISelect {
   placeholder?: string;
   options: (IRoleOptions | IStatusOptions)[];
-  eventHandler?: ((value: Roles) => void) | ((value: Statuses) => void);
+  eventHandler?: (value: RoleEnum | StatusEnum) => void;
 }
 
 const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
@@ -118,10 +118,10 @@ const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
     }
   };
 
-  const makeHidden = (option: string, optionName: Roles | Statuses) => {
+  const makeHidden = (option: string, optionName: RoleEnum | StatusEnum) => {
     setValue(option);
     if (eventHandler) {
-      eventHandler(optionName as never);
+      eventHandler(optionName);
     }
     setIsHidden(true);
     setDisplay('none');
