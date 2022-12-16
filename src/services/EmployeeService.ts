@@ -24,6 +24,6 @@ export default class EmployeeService {
     id: string,
     data: UpdateEmployee,
   ): Promise<AxiosResponse<IEmployeeResponse>> {
-    return api.put<IEmployeeResponse>(`/admin/user${id}`, data);
+    return api.put<IEmployeeResponse>(`/admin/user/${id}`, data);
   }
 }

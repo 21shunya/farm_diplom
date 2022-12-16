@@ -29,13 +29,15 @@ export interface IRoleOptions {
 }
 
 export interface IRoleInfo {
-  name: string;
+  name: keyof EmployeeResponse;
+  title: string;
   options: IRoleOptions[];
   width: number;
 }
 
 export const roleInfo: IRoleInfo = {
-  name: 'Роль',
+  name: 'role',
+  title: 'Роль',
   options: [
     // { name: '', title: 'Все' },
     { name: 'SAdmin', title: 'САдмин', bg: '#FCF1B5', icon: adminIcon },
@@ -53,13 +55,15 @@ export interface IStatusOptions {
 }
 
 export interface IStatusInfo {
-  name: string;
+  name: keyof EmployeeResponse;
+  title: string;
   options: IStatusOptions[];
   width: number;
 }
 
 export const statusInfo: IStatusInfo = {
-  name: 'Статус',
+  name: 'active',
+  title: 'Статус',
   options: [
     // {
     //   name: '',

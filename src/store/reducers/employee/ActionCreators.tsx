@@ -1,7 +1,7 @@
 import { AppDispatch } from '../../store';
 import EmployeeService from '../../../services/EmployeeService';
 import { IEmployee, setEmployee, setEmployeeList, setError } from './UserSlice';
-import { EmployeeRequest } from '../../../models/Employee';
+import { EmployeeRequest, EmployeeResponse, UpdateEmployee } from '../../../models/Employee';
 import ColorFlags from '../../../components/ui/colorFlags/colorFlags';
 
 export const fetchEmployees = () => {
@@ -57,6 +57,27 @@ export const getEmployeeByID = (id: string) => async (dispatch: AppDispatch) => 
   try {
     const response = await EmployeeService.getUserById(id);
     dispatch(setEmployee({ ...response.data.payload }));
+  } catch (e) {
+    if (e instanceof Error) {
+      dispatch(setError(e.message));
+    } else {
+      console.log('Unexpected error', e);
+    }
+  }
+};
+
+export const updateEmployee = (data: EmployeeResponse) => async (dispatch: AppDispatch) => {
+  try {
+    const id = data.id;
+    const newData: UpdateEmployee = {
+      name: data.name,
+      surname: data.surname,
+      patronymic: data.patronymic,
+      role: data.role,
+      active: data.active,
+    };
+
+    return await EmployeeService.updateUser(id, newData);
   } catch (e) {
     if (e instanceof Error) {
       dispatch(setError(e.message));
