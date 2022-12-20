@@ -7,13 +7,14 @@ import { pxToEm } from '../../utils/Converting';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: ${pxToEm(6, 30)}em;
 
   ${getTypography('header1')};
   color: ${text_colors.dark_grey};
 `;
 
-const Text = styled.div`
+const Text = styled.span`
   display: flex;
   ${getTypography('inputMedium')};
   color: ${text_colors.grey};

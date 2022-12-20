@@ -13,6 +13,7 @@ import ModalWrapper from '../../components/ui/modals/ModalWrapper';
 import CreateEmployee from '../../components/ui/modals/employee/CreateEmployee';
 import { employeeResponseModel, roleInfo } from '../../models/EmployeeModel';
 import Table from '../../components/ui/table/Table';
+import { setNewLocation } from '../../store/reducers/breadcrumb/ActionCreators';
 
 const EmployeePage: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const EmployeePage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchEmployees());
+    dispatch(setNewLocation('Сотрудники'));
   }, []);
 
   return (
