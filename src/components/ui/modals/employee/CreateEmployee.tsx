@@ -5,7 +5,7 @@ import { PrimaryBtn } from '../../buttons/PrimaryBtn';
 import TextField from '../../inputs/TextField';
 import { SimpleInput } from '../../inputs/SimpleInput';
 import Select from '../../inputs/Select';
-import { EmployeeRequest, RoleEnum, Костыль } from '../../../../models/Employee';
+import { EmployeeRequest, RoleEnum, StatusEnum } from '../../../../models/Employee';
 import { useAppDispatch } from '../../../../hooks/redux';
 import { addEmployee } from '../../../../store/reducers/employee/ActionCreators';
 import { employeeRequestModel, roleInfo } from '../../../../models/EmployeeModel';
@@ -44,8 +44,13 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
     setUser((prevState) => ({ ...prevState, [key]: e.target.value }));
   };
 
-  const selectHandler = (value: RoleEnum) => {
-    setUser((prevState) => ({ ...prevState, role: value }));
+  const selectHandler = (value: RoleEnum | StatusEnum) => {
+    let changes = {};
+
+    if (value in RoleEnum) {
+      changes = { role: value };
+    }
+    setUser((prevState) => ({ ...prevState, ...changes }));
   };
 
   const createEmployee = () => {
@@ -84,11 +89,7 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
           </TextField>
         ))}
         <TextField key={roleInfo.name} label={roleInfo.name}>
-          <Select
-            placeholder={''}
-            options={roleInfo.options.slice(1, 4)}
-            eventHandler={selectHandler as Костыль}
-          />
+          <Select placeholder={''} options={roleInfo.options} eventHandler={selectHandler} />
         </TextField>
       </Fields>
       <PrimaryBtn size={'medium'} onClick={() => createEmployee()}>

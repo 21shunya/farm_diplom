@@ -40,18 +40,9 @@ const IconWrapper = styled.div<IIconWrapper>`
   justify-content: flex-end;
   align-items: center;
   padding: ${pxToEm(12, 18)}em;
-  animation: ${({ animation }) => animation};
+  //animation: ${({ animation }) => animation};
   transform: rotate(${({ rotation }) => rotation}deg);
-
-  // &:hover {
-  //   animation: ${rotate} linear 0.5s;
-  //   transform: rotate(180deg);
-  // }
-
-  &:active {
-    animation: ${rotate} linear 0.5s;
-    transform: rotate(180deg);
-  }
+  transition: all 0.5s;
 `;
 
 interface IOptions {
