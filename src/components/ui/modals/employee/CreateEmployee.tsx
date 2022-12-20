@@ -41,7 +41,7 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
   });
 
   const eventHandler = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
-    setUser((prevState) => ({ ...prevState, [key]: e.target.value }));
+    setUser((prevState) => ({ ...prevState, [key]: e.target.value.trim() }));
   };
 
   const selectHandler = (value: RoleEnum | StatusEnum) => {
@@ -53,26 +53,15 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
     setUser((prevState) => ({ ...prevState, ...changes }));
   };
 
-  const createEmployee = () => {
-    const newUser: EmployeeRequest = {
-      name: '',
-      surname: '',
-      patronymic: '',
-      phone: '',
-      role: RoleEnum.Courier,
-    };
-
-    let key: keyof EmployeeRequest;
-
-    for (key in user) {
-      console.log(`${key} type: ${typeof user[key]}`);
-      // newUser[key] = user[key];
-      if (newUser[key as keyof EmployeeRequest] === '') {
+  const createEmployee = async () => {
+    for (const key in user) {
+      if (user[key as keyof EmployeeRequest] === '') {
         setVisibility('hidden');
         return;
       }
     }
-    dispatch(addEmployee(newUser));
+    console.log('ready to create');
+    await dispatch(addEmployee(user));
     setVisibility('hidden');
   };
 
