@@ -44,7 +44,7 @@ const EmployeeByIdPage: React.FC = () => {
     setNewEmployee((prevState) => ({ ...prevState, [key]: e.target.value.trim() }));
   };
 
-  const roleStatusSelector = (value: RoleEnum | StatusEnum) => {
+  const selectHandler = (value: RoleEnum | StatusEnum) => {
     let changes = {};
 
     if (value in RoleEnum) {
@@ -86,7 +86,7 @@ const EmployeeByIdPage: React.FC = () => {
           ))}
           {[roleInfo, statusInfo].map((item) => (
             <TextField key={item.title} label={item.title}>
-              <Select placeholder={''} options={item.options} eventHandler={roleStatusSelector} />
+              <Select placeholder={''} options={item.options} eventHandler={selectHandler} />
             </TextField>
           ))}
         </FieldsWrapper>

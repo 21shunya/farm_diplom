@@ -1,5 +1,3 @@
-export type Костыль = (value: RoleEnum | StatusEnum) => void;
-
 export enum RoleEnum {
   SAdmin = 'SAdmin',
   Admin = 'Admin',
