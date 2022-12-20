@@ -1,4 +1,4 @@
-import { EmployeeResponse, EmployeeRequest, Roles } from './Employee';
+import { EmployeeRequest, EmployeeResponse, RoleEnum, StatusEnum } from './Employee';
 import adminIcon from '../assets/icons/admin.svg';
 import courierIcon from '../assets/icons/courier.svg';
 import activeIcon from '../assets/icons/check.svg';
@@ -22,7 +22,7 @@ export const employeeRequestModel: { name: keyof EmployeeRequest; title: string 
 ];
 
 export interface IRoleOptions {
-  name: Roles;
+  name: RoleEnum;
   title: string;
   bg: string;
   icon: string;
@@ -40,15 +40,15 @@ export const roleInfo: IRoleInfo = {
   title: 'Роль',
   options: [
     // { name: '', title: 'Все' },
-    { name: 'SAdmin', title: 'САдмин', bg: '#FCF1B5', icon: adminIcon },
-    { name: 'Admin', title: 'Админ', bg: '#FCF1B5', icon: adminIcon },
-    { name: 'Courier', title: 'Курьер', bg: '#EFDDFA', icon: courierIcon },
+    { name: RoleEnum.SAdmin, title: 'САдмин', bg: '#FCF1B5', icon: adminIcon },
+    { name: RoleEnum.Admin, title: 'Админ', bg: '#FCF1B5', icon: adminIcon },
+    { name: RoleEnum.Courier, title: 'Курьер', bg: '#EFDDFA', icon: courierIcon },
   ],
   width: 98,
 };
 
 export interface IStatusOptions {
-  name: 'active' | 'inactive';
+  name: StatusEnum;
   title: string;
   bg: string;
   icon: string;
@@ -70,13 +70,13 @@ export const statusInfo: IStatusInfo = {
     //   title: 'Все',
     // },
     {
-      name: 'active',
+      name: StatusEnum.active,
       title: 'Активен',
       bg: '#CBFCD0',
       icon: activeIcon,
     },
     {
-      name: 'inactive',
+      name: StatusEnum.inactive,
       title: 'Неактивен',
       bg: '#FEC6C6',
       icon: inactiveIcon,

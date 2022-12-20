@@ -1,12 +1,22 @@
-export type Roles = 'SAdmin' | 'Admin' | 'Courier';
-export type Statuses = 'active' | 'inactive';
+export type Костыль = (value: RoleEnum | StatusEnum) => void;
+
+export enum RoleEnum {
+  SAdmin = 'SAdmin',
+  Admin = 'Admin',
+  Courier = 'Courier',
+}
+
+export enum StatusEnum {
+  active = 'active',
+  inactive = 'inactive',
+}
 
 export class EmployeeRequest {
   public phone: string;
   public name: string;
   public surname: string;
   public patronymic: string;
-  public role: Roles;
+  public role: RoleEnum;
 }
 
 export class EmployeeResponse extends EmployeeRequest {

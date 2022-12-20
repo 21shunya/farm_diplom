@@ -3,7 +3,7 @@ import React from 'react';
 import { getTypography, textTypes } from '../../../theme/typography';
 import { text_colors } from '../../../theme/colors';
 import { pxToEm } from '../../../utils/Converting';
-import { Roles } from '../../../models/Employee';
+import { RoleEnum } from '../../../models/Employee';
 import { roleInfo, statusInfo } from '../../../models/EmployeeModel';
 
 const fontSize = textTypes.textRegular.font_size;
@@ -35,7 +35,7 @@ interface IStatus {
 
 interface IRole {
   type: 'role';
-  name: Roles;
+  name: RoleEnum;
 }
 type IColorFlags = IStatus | IRole;
 

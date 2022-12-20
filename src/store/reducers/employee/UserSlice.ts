@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { EmployeeResponse } from '../../../models/Employee';
+import { EmployeeResponse, RoleEnum } from '../../../models/Employee';
 
 export interface IEmployee {
   id: string;
@@ -26,7 +26,7 @@ const initialState: IEmployeeSlice = {
     surname: '',
     patronymic: '',
     phone: '',
-    role: 'Courier',
+    role: RoleEnum.Courier,
     active: true,
   },
   isLoading: false,
