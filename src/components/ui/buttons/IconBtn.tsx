@@ -14,6 +14,7 @@ export const IconBtn = styled.button<IIconBtn>`
   border: none;
   border-radius: 100px;
   background: ${({ bg }) => bg ?? 'transparent'};
+  transition: all 0.4s;
 
   width: ${pxToRem(50)}rem;
   height: ${pxToRem(50)}rem;
@@ -23,7 +24,7 @@ export const IconBtn = styled.button<IIconBtn>`
   }
 
   &:disabled {
-    background: transparent;
+    opacity: 0.3;
   }
 
   &:active {
