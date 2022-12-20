@@ -22,7 +22,7 @@ const EmployeePage: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchEmployees());
-    dispatch(setNewLocation('Клиенты'));
+    dispatch(setNewLocation('Сотрудники'));
   }, []);
 
   return (

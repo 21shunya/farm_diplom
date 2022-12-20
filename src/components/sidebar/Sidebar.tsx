@@ -1,11 +1,6 @@
 import React from 'react';
 import NavButton from './NavButton';
-import { Link, useNavigate } from 'react-router-dom';
-import PeopleIcon from '../../assets/icons/PeopleIcon';
-import BasketIcon from '../../assets/icons/BasketIcon';
-import PersonIcon from '../../assets/icons/PersonIcon';
-import PhoneIcon from '../../assets/icons/PhoneIcon';
-import FarmIcon from '../../assets/icons/FarmIcon';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { pxToRem } from '../../utils/Converting';
 import { colors } from '../../theme/colors';
@@ -13,6 +8,11 @@ import logo from '../../assets/logo/logo_vertical.svg';
 import LogoutIcon from '../../assets/icons/LogoutIcon';
 import { useAppDispatch } from '../../hooks/redux';
 import { doLogout } from '../../store/reducers/auth/ActionCreators';
+import PeopleIcon from '../../assets/icons/PeopleIcon';
+import BasketIcon from '../../assets/icons/BasketIcon';
+import PersonIcon from '../../assets/icons/PersonIcon';
+import PhoneIcon from '../../assets/icons/PhoneIcon';
+import FarmIcon from '../../assets/icons/FarmIcon';
 
 const Wrapper = styled.div`
   box-sizing: border-box;
@@ -22,8 +22,6 @@ const Wrapper = styled.div`
   padding: ${pxToRem(32)}rem ${pxToRem(16)}rem ${pxToRem(16)}rem;
   gap: ${pxToRem(64)}rem;
   border-right: 1.5px solid ${colors.grey};
-
-  width: ${pxToRem(272)}rem;
 `;
 
 const BtnsWrapper = styled.div`
@@ -44,18 +42,57 @@ const NavButtons = styled.div`
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const loc = useLocation();
 
-  const btns = [
-    { name: 'Клиенты', path: '/clients', icon: <PeopleIcon /> },
-    { name: 'Заказы', path: '/orders', icon: <BasketIcon /> },
-    { name: 'Сотрудники', path: '/employees', icon: <PersonIcon /> },
-    { name: 'Звонки', path: '/calls', icon: <PhoneIcon /> },
-    { name: 'Аптеки', path: '/farms', icon: <FarmIcon /> },
-    { name: 'Логотипы', path: '/logos', icon: <FarmIcon /> },
+  type ButtonsType = { name: string; path: string; icon: JSX.Element }[];
+
+  const navButtons: ButtonsType = [
+    {
+      name: 'Клиенты',
+      path: '/clients',
+      get icon() {
+        return <PeopleIcon color={loc.pathname === this.path ? colors.brand : ''} />;
+      },
+    },
+    {
+      name: 'Заказы',
+      path: '/orders',
+      get icon() {
+        return <BasketIcon color={loc.pathname === this.path ? colors.brand : ''} />;
+      },
+    },
+    {
+      name: 'Сотрудники',
+      path: '/employees',
+      get icon() {
+        return <PersonIcon color={loc.pathname === this.path ? colors.brand : ''} />;
+      },
+    },
+    {
+      name: 'Звонки',
+      path: '/calls',
+      get icon() {
+        return <PhoneIcon color={loc.pathname === this.path ? colors.brand : ''} />;
+      },
+    },
+    {
+      name: 'Аптеки',
+      path: '/farms',
+      get icon() {
+        return <FarmIcon color={loc.pathname === this.path ? colors.brand : ''} />;
+      },
+    },
+    {
+      name: 'Логотипы',
+      path: '/logos',
+      get icon() {
+        return <FarmIcon color={loc.pathname === this.path ? colors.brand : ''} />;
+      },
+    },
   ];
 
-  const logout = () => {
-    dispatch(doLogout());
+  const logout = async () => {
+    await dispatch(doLogout());
     navigate('/auth');
   };
 
@@ -64,13 +101,14 @@ const Sidebar = () => {
       <img src={logo} alt={'logo'} />
       <BtnsWrapper>
         <NavButtons>
-          {btns.map((item) => (
+          {navButtons.map((item) => (
             <Link to={item.path} key={item.path}>
-              <NavButton icon={item.icon} name={item.name} />
+              <NavButton focus={loc.pathname === item.path} icon={item.icon} name={item.name} />
             </Link>
           ))}
         </NavButtons>
         <NavButton
+          focus={false}
           color={colors.brand}
           onClick={() => logout()}
           icon={<LogoutIcon color={colors.brand} />}
