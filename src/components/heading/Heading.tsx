@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { pxToRem } from '../../utils/Converting';
 import { IconBtn } from '../ui/buttons/IconBtn';
 import ArrowLeft from '../../assets/icons/ArrowLeft';
 import { colors } from '../../theme/colors';
 import Breadcrumbs from './Breadcrumbs';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { useNavigate } from 'react-router-dom';
+import { returnLocation } from '../../store/reducers/breadcrumb/ActionCreators';
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,15 +34,32 @@ interface IHeading {
 }
 
 const Heading: React.FC<IHeading> = ({ children }) => {
-  const title = 'Some Title';
-  const path = 'Breadcrumbs';
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { title } = useAppSelector((state) => state.crumbReducer);
+  const [isDisabled, setDisable] = useState(true);
+
+  useEffect(() => {
+    setDisable(title === localStorage.getItem('path'));
+  });
+
+  const goBack = () => {
+    dispatch(returnLocation);
+    navigate(-1);
+  };
+
   return (
     <Wrapper>
       <Navigation>
-        <IconBtn bg={colors.white} bg_hover={colors.icon_hover}>
+        <IconBtn
+          disabled={isDisabled}
+          bg={colors.white}
+          bg_hover={colors.icon_hover}
+          onClick={() => goBack()}
+        >
           <ArrowLeft color={colors.brand} size={36} />
         </IconBtn>
-        <Breadcrumbs title={title} breadcrumbs={path} />
+        <Breadcrumbs title={title} breadcrumbs={localStorage.getItem('path') ?? ''} />
       </Navigation>
       <BtnsWrapper>{children}</BtnsWrapper>
     </Wrapper>

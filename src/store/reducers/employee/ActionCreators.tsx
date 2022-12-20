@@ -1,6 +1,6 @@
 import { AppDispatch } from '../../store';
 import EmployeeService from '../../../services/EmployeeService';
-import { IEmployee, setEmployee, setEmployeeList, setError } from './UserSlice';
+import { IEmployee, setEmployee, setEmployeeList, setError, setLoading } from './UserSlice';
 import { EmployeeRequest, EmployeeResponse, UpdateEmployee } from '../../../models/Employee';
 import ColorFlags from '../../../components/ui/colorFlags/colorFlags';
 
@@ -55,8 +55,10 @@ export const addEmployee = (data: EmployeeRequest) => async (dispatch: AppDispat
 
 export const getEmployeeByID = (id: string) => async (dispatch: AppDispatch) => {
   try {
+    dispatch(setLoading(true));
     const response = await EmployeeService.getUserById(id);
     dispatch(setEmployee({ ...response.data.payload }));
+    dispatch(setLoading(false));
   } catch (e) {
     if (e instanceof Error) {
       dispatch(setError(e.message));

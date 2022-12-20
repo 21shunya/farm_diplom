@@ -14,6 +14,7 @@ import Select from '../../components/ui/inputs/Select';
 import styled from 'styled-components';
 import { pxToRem } from '../../utils/Converting';
 import { EmployeeResponse, RoleEnum, StatusEnum } from '../../models/Employee';
+import { setNewLocation } from '../../store/reducers/breadcrumb/ActionCreators';
 
 const FieldsWrapper = styled.div`
   display: flex;
@@ -27,17 +28,23 @@ const FieldsWrapper = styled.div`
 const EmployeeByIdPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
-  const { employee } = useAppSelector((state) => state.employeeReducer);
+  const { employee, isLoading } = useAppSelector((state) => state.employeeReducer);
   const [newEmployee, setNewEmployee] = useState<EmployeeResponse>(employee);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (id) {
       dispatch(getEmployeeByID(id));
+      setLoading(isLoading);
     }
   }, []);
 
   useEffect(() => {
-    setNewEmployee(employee);
+    if (!loading) {
+      setNewEmployee(employee);
+      const location = `${employee.surname} ${employee.name}`;
+      dispatch(setNewLocation(location));
+    }
   }, [employee]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>, key: keyof EmployeeResponse) => {
