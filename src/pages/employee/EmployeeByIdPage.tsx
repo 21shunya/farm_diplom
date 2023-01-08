@@ -9,12 +9,19 @@ import { SimpleInput } from '../../components/ui/inputs/SimpleInput';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { getEmployeeByID, updateEmployee } from '../../store/reducers/employee/ActionCreators';
 import { useParams } from 'react-router-dom';
-import { employeeResponseModel, roleInfo, statusInfo } from '../../models/EmployeeModel';
+import {
+  employeeResponseModel,
+  IRoleInfo,
+  IStatusInfo,
+  roleInfo,
+  statusInfo,
+} from '../../models/EmployeeModel';
 import Select from '../../components/ui/inputs/Select';
 import styled from 'styled-components';
 import { pxToRem } from '../../utils/Converting';
 import { EmployeeResponse, RoleEnum, StatusEnum } from '../../models/Employee';
 import { setNewLocation } from '../../store/reducers/breadcrumb/ActionCreators';
+import { getCurrentRoleName, getCurrentStatusName } from '../../utils';
 
 const FieldsWrapper = styled.div`
   display: flex;
@@ -72,6 +79,16 @@ const EmployeeByIdPage: React.FC = () => {
     }
   };
 
+  const getCurrentValue = (item: IRoleInfo | IStatusInfo): string => {
+    if (item.name === 'role') {
+      return getCurrentRoleName(employee);
+    }
+    if (item.name === 'active') {
+      return getCurrentStatusName(employee);
+    }
+    return '';
+  };
+
   return (
     <PageWrapper>
       <Heading>
@@ -93,7 +110,12 @@ const EmployeeByIdPage: React.FC = () => {
           ))}
           {[roleInfo, statusInfo].map((item) => (
             <TextField key={item.title} label={item.title}>
-              <Select placeholder={''} options={item.options} eventHandler={selectHandler} />
+              <Select
+                placeholder={''}
+                options={item.options}
+                eventHandler={selectHandler}
+                defaultValue={getCurrentValue(item)}
+              />
             </TextField>
           ))}
         </FieldsWrapper>

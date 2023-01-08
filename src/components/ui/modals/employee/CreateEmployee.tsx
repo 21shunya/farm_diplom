@@ -77,8 +77,13 @@ const CreateEmployee: React.FC<ICreateEmployee> = ({ setVisibility }) => {
             />
           </TextField>
         ))}
-        <TextField key={roleInfo.name} label={roleInfo.name}>
-          <Select placeholder={''} options={roleInfo.options} eventHandler={selectHandler} />
+        <TextField key={roleInfo.name} label={roleInfo.title}>
+          <Select
+            placeholder={'Не указано'}
+            options={roleInfo.options}
+            eventHandler={selectHandler}
+            defaultValue={''}
+          />
         </TextField>
       </Fields>
       <PrimaryBtn size={'medium'} onClick={() => createEmployee()}>

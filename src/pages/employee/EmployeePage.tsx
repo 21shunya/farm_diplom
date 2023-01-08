@@ -38,8 +38,8 @@ const EmployeePage: React.FC = () => {
             <SimpleInput placeholder={'Поиск'} />
           </TextField>
           {[roleInfo].map((item) => (
-            <TextField key={item.name} label={item.name}>
-              <Select placeholder={''} options={item.options} />
+            <TextField key={item.name} label={item.title}>
+              <Select placeholder={'Все'} options={item.options} defaultValue={''} />
             </TextField>
           ))}
         </TableInputs>
