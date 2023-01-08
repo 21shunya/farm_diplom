@@ -86,14 +86,15 @@ interface ISelect {
   placeholder?: string;
   options: (IRoleOptions | IStatusOptions)[];
   eventHandler?: (value: RoleEnum | StatusEnum) => void;
+  defaultValue: string;
 }
 
-const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
+const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler, defaultValue }) => {
   const [isHidden, setIsHidden] = useState(true);
   const [display, setDisplay] = useState('none');
   const [animation, setAnimation] = useState('');
   const [rotation, setRotation] = useState(0);
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>(defaultValue);
 
   const changeVisibility = () => {
     if (isHidden) {
@@ -114,8 +115,7 @@ const Select: React.FC<ISelect> = ({ placeholder, options, eventHandler }) => {
     if (eventHandler) {
       eventHandler(optionName);
     }
-    setIsHidden(true);
-    setDisplay('none');
+    changeVisibility();
   };
 
   return (
