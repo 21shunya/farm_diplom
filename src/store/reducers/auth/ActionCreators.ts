@@ -39,11 +39,19 @@ export const doLogout = () => async (dispatch: AppDispatch) => {
 
 export const checkAuth = () => async (dispatch: AppDispatch) => {
   try {
+    await AuthService.getProfile();
+    dispatch(setAuth(true));
+  } catch {
+    checkRefresh();
+  }
+};
+
+const checkRefresh = () => async (dispatch: AppDispatch) => {
+  try {
     const refreshToken = localStorage.getItem('refreshToken');
     const response = await AuthService.refresh(refreshToken);
     localStorage.setItem('token', response.data.payload.accessToken);
     localStorage.setItem('refreshToken', response.data.payload.refreshToken);
-    dispatch(setAuth(true));
   } catch (e) {
     if (e instanceof Error) {
       dispatch(setAuthError(e.message));
