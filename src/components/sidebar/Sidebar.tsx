@@ -8,9 +8,10 @@ import logo from '../../assets/logo/logo_vertical.svg';
 import LogoutIcon from '../../assets/icons/LogoutIcon';
 import { useAppDispatch } from '../../hooks/redux';
 import { doLogout } from '../../store/reducers/auth/ActionCreators';
+import { mainRoutes, pathEnum } from '../../routes';
 import PeopleIcon from '../../assets/icons/PeopleIcon';
-import BasketIcon from '../../assets/icons/BasketIcon';
 import PersonIcon from '../../assets/icons/PersonIcon';
+import BasketIcon from '../../assets/icons/BasketIcon';
 import PhoneIcon from '../../assets/icons/PhoneIcon';
 import FarmIcon from '../../assets/icons/FarmIcon';
 
@@ -42,54 +43,28 @@ const NavButtons = styled.div`
 const Sidebar = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const loc = useLocation();
+  const location = useLocation();
 
-  type ButtonsType = { name: string; path: string; icon: JSX.Element }[];
-
-  const navButtons: ButtonsType = [
-    {
-      name: 'Клиенты',
-      path: '/clients',
-      get icon() {
-        return <PeopleIcon color={loc.pathname === this.path ? colors.brand : ''} />;
-      },
-    },
-    {
-      name: 'Заказы',
-      path: '/orders',
-      get icon() {
-        return <BasketIcon color={loc.pathname === this.path ? colors.brand : ''} />;
-      },
-    },
-    {
-      name: 'Сотрудники',
-      path: '/employees',
-      get icon() {
-        return <PersonIcon color={loc.pathname === this.path ? colors.brand : ''} />;
-      },
-    },
-    {
-      name: 'Звонки',
-      path: '/calls',
-      get icon() {
-        return <PhoneIcon color={loc.pathname === this.path ? colors.brand : ''} />;
-      },
-    },
-    {
-      name: 'Аптеки',
-      path: '/farms',
-      get icon() {
-        return <FarmIcon color={loc.pathname === this.path ? colors.brand : ''} />;
-      },
-    },
-    {
-      name: 'Логотипы',
-      path: '/logos',
-      get icon() {
-        return <FarmIcon color={loc.pathname === this.path ? colors.brand : ''} />;
-      },
-    },
-  ];
+  const icons = {
+    [pathEnum.employees as string]: (
+      <PersonIcon color={location.pathname.includes(pathEnum.employees) ? colors.brand : ''} />
+    ),
+    [pathEnum.clients]: (
+      <PeopleIcon color={location.pathname.includes(pathEnum.clients) ? colors.brand : ''} />
+    ),
+    [pathEnum.orders]: (
+      <BasketIcon color={location.pathname.includes(pathEnum.orders) ? colors.brand : ''} />
+    ),
+    [pathEnum.calls]: (
+      <PhoneIcon color={location.pathname.includes(pathEnum.calls) ? colors.brand : ''} />
+    ),
+    [pathEnum.pharmacies]: (
+      <FarmIcon color={location.pathname.includes(pathEnum.pharmacies) ? colors.brand : ''} />
+    ),
+    [pathEnum.logos]: (
+      <FarmIcon color={location.pathname.includes(pathEnum.logos) ? colors.brand : ''} />
+    ),
+  };
 
   const logout = async () => {
     await dispatch(doLogout());
@@ -101,11 +76,18 @@ const Sidebar = () => {
       <img src={logo} alt={'logo'} />
       <BtnsWrapper>
         <NavButtons>
-          {navButtons.map((item) => (
-            <Link to={item.path} key={item.path}>
-              <NavButton focus={loc.pathname === item.path} icon={item.icon} name={item.name} />
-            </Link>
-          ))}
+          {mainRoutes.map(
+            (item) =>
+              (item.path.match(/\//g) || []).length === 1 && (
+                <Link to={item.path} key={item.path}>
+                  <NavButton
+                    focus={location.pathname.includes(item.path)}
+                    icon={icons[item.path]}
+                    name={item.name}
+                  />
+                </Link>
+              ),
+          )}
         </NavButtons>
         <NavButton
           focus={false}
